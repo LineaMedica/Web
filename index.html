@@ -1,124 +1,447 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Línea Médica Yolombó: especialistas en diagnóstico cardiorrespiratorio no invasivo. Ecocardiogramas, Holter, MAPA y Espirometría en Antioquia." />
-  <meta name="keywords" content="Línea Médica Yolombó, ecocardiograma, Holter, MAPA, espirometría, diagnóstico cardiológico, diagnóstico neumológico, Yolombó Antioquia" />
-  <meta name="author" content="Línea Médica Yolombó" />
-  <title>Diagnóstico Cardiopulmonar | Línea Médica Yolombó</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-      color: #333;
-    }
-    header, footer {
-      background: #004e89;
-      color: #fff;
-      padding: 1rem 2rem;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      padding: 0;
-    }
-    nav ul li a {
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: auto;
-    }
-    ul {
-      padding-left: 1.5rem;
-    }
-    .chatbot {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #004e89;
-      color: white;
-      padding: 1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      z-index: 999;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Interactivo ESCANO - Versión Profesional</title>
+    <!-- React y ReactDOM desde CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel para transpilar JSX en el navegador -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Google Fonts: Poppins con varios grosores -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #eef2f7;
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .banner-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 85, 170, 0.15);
+            overflow: hidden;
+            max-width: 480px;
+            width: 100%;
+            margin: 20px auto;
+            border: 1px solid #e0e7ff;
+            text-align: center;
+        }
+        
+        .slides-viewport {
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .slides-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        .slide-content {
+            width: 100%;
+            min-height: 680px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 30px 80px; 
+            box-sizing: border-box;
+            background-color: #ffffff;
+        }
+        
+        /* --- ESTILOS PORTADA (TEMA CLARO) --- */
+        .slide-cover {
+            background: linear-gradient(145deg, white, rgba(190, 237, 255, 0.46));
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .cover-heart {
+            width: 160px;
+            height: 130px;
+            animation: fadeIn-slideUp 0.8s 0.2s both;
+        }
+        
+        .cover-heart svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(227, 0, 82, 0.2));
+        }
+
+        .slide-cover h2 {
+            color: #014d98;
+            font-size: 3.1rem; 
+            font-weight: 800; /* Extra-Bold */
+            animation: fadeIn-slideUp 0.8s 0.4s both;
+        }
+
+        .slide-cover p {
+            font-size: 1.2rem; 
+            max-width: 90%;
+            color: #333; /* Texto oscuro para legibilidad */
+            line-height: 1.7;
+            font-weight: 400; /* Regular */
+            animation: fadeIn-slideUp 0.8s 0.6s both;
+        }
+
+        .slide-cover p strong {
+            font-weight: 700; /* Bold */
+            color: #014d98;
+        }
+        
+        .highlight-blue {
+            color: #057dcb;
+            font-weight: 700;
+        }
+        
+        @keyframes fadeIn-slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* --- ESTILOS SLIDE DE LOGOS (AJUSTADO) --- */
+        .slide-logos {
+            justify-content: flex-start;
+            padding-top: 120px;
+            gap: 50px;
+            background-color: #ffffff; /* Fondo blanco */
+        }
+        .slide-logos .stacked-logo {
+            max-width: 280px;
+            animation: fadeIn-slideUp 0.8s both;
+        }
+        .slide-logos .stacked-logo:nth-child(1) { animation-delay: 0.2s; }
+        .slide-logos .stacked-logo:nth-child(2) { animation-delay: 0.4s; }
+        
+        /* --- ESTILOS GENERALES --- */
+        
+        .slide-content.slide-background-gray {
+            background-color: #f8f9fa;
+        }
+
+        .slide-content h2 {
+            font-size: 2.9rem; 
+            color: #014d98;
+            margin-bottom: 25px;
+            font-weight: 400; /* Regular */
+            line-height: 1.2;
+        }
+        
+        .slide-content h2 strong {
+            font-weight: 800; /* Extra-Bold */
+        }
+
+        .slide-content .content-body {
+             flex-grow: 1;
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             width: 100%;
+        }
+        
+        .info-list {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+            width: 100%;
+            columns: 2;
+            gap: 25px;
+        }
+        
+        .info-list li {
+            font-size: 1rem; 
+            color: #333;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            break-inside: avoid-column;
+            font-weight: 400; /* Regular */
+        }
+        
+        .info-list li strong {
+            font-weight: 600; /* Semi-Bold */
+        }
+        
+        .info-list li svg {
+            flex-shrink: 0;
+            color: #E30052; /* Color Magenta */
+        }
+
+        .new-service-tag {
+            background-color: #ffc107;
+            color: #333;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+        
+        .slide-content p {
+            font-size: 1.2rem; 
+            color: #333;
+            line-height: 1.7;
+            font-weight: 400; /* Regular */
+        }
+        
+        .slide-content p strong {
+            font-weight: 700; /* Bold */
+            color: #014d98;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #E30052, #c90049); /* Color Magenta */
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(227, 0, 82, 0.3);
+            margin-top: 30px; 
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(227, 0, 82, 0.4);
+        }
+        
+        .pagination-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 5;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #90a4ae;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background-color: #014d98;
+            transform: scale(1.2);
+        }
+        
+        .dot.light {
+            background-color: #cdd6e0;
+        }
+        .dot.light.active {
+            background-color: #003366;
+        }
+
+        @media (max-width: 480px) {
+            .info-list {
+                columns: 1;
+            }
+            .slide-content h2, .slide-cover h2 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Línea Médica Yolombó</h1>
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#filosofia">Filosofía</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#equipo">Equipo</a></li>
-        <li><a href="#innovacion">Tecnología</a></li>
-        <li><a href="#cobertura">Cobertura</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div id="root"></div>
 
-  <section id="inicio">
-    <h2>Bienvenidos</h2>
-    <p>Especialistas en diagnóstico cardiológico y neumológico no invasivo. Cuidamos tu salud con precisión, empatía y tecnología de punta en Yolombó, Antioquia.</p>
-  </section>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+        
+        const slidesData = [
+            {
+                id: 0,
+                title: "¿Necesitas algún estudio médico?",
+                content_type: "cover",
+                text: "Con el convenio <strong>Línea Médica</strong> y <strong>ESCANO</strong> te ofrecemos <strong>beneficios exclusivos</strong>."
+            },
+            { 
+                id: 1,
+                title: "<strong>Nuestros</strong> <span class='highlight-blue'>Servicios</span>",
+                content_type: "list",
+                items: [
+                    { name: "<strong>Resonancia</strong> magnética", isNew: false },
+                    { name: "<strong>Ecografía</strong>", isNew: false },
+                    { name: "<strong>Tomografía</strong>", isNew: false },
+                    { name: "<strong>Densitometría</strong> ósea", isNew: false },
+                    { name: "<strong>Mamografía</strong>", isNew: false },
+                    { name: "<strong>Rayos X</strong>", isNew: false },
+                    { name: "<strong>Chequeos</strong> preventivos", isNew: true },
+                    { name: "<strong>Electrocardiograma</strong>", isNew: false },
+                    { name: "<strong>Consulta</strong> médica", isNew: true },
+                ]
+            },
+            { 
+                id: 2,
+                title: "<strong>Beneficios</strong> <span class='highlight-blue'>Exclusivos</span>",
+                content_type: "list",
+                items: [
+                    { name: "Citas en <strong>máximo 2 días</strong> hábiles", isNew: false },
+                    { name: "Entrega de <strong>resultados rápidos</strong>", isNew: false },
+                    { name: "<strong>Descuentos</strong> especiales", isNew: false },
+                    { name: "Atención con <strong>calidez humana</strong>", isNew: false },
+                    { name: "<strong>Seguimiento</strong> personalizado", isNew: false },
+                    { name: "<strong>Envío de resultados</strong> a tu médico", isNew: false },
+                ]
+            },
+            { 
+                id: 3,
+                title: "<strong>Confianza</strong> y <span class='highlight-blue'>Experiencia</span>",
+                content_type: "paragraph",
+                text: "Con más de <strong>40 años de experiencia</strong>, ESCANO es especialista en ayudas diagnósticas. En <strong>Línea Médica</strong> y <strong>ESCANO</strong> estamos comprometidos con tu <strong>bienestar</strong>. ¡Tu salud es lo más importante!"
+            },
+            {
+                id: 4,
+                content_type: "logos",
+            }
+        ];
 
-  <section id="filosofia">
-    <h2>Filosofía y Valores</h2>
-    <p>Trabajamos con ética, compromiso y cercanía. Nuestro objetivo es brindar atención médica integral, personalizada y confiable a cada paciente.</p>
-  </section>
+        const CheckIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+        );
 
-  <section id="servicios">
-    <h2>Servicios Especializados</h2>
-    <ul>
-      <li><strong>Ecocardiograma Doppler:</strong> Evaluación detallada y en tiempo real de la estructura y función cardíaca.</li>
-      <li><strong>Electrocardiografía Dinámica (Holter):</strong> Registro ambulatorio de 24-48 horas para detectar arritmias.</li>
-      <li><strong>Espirometría:</strong> Prueba funcional respiratoria que evalúa asma, EPOC y capacidad pulmonar.</li>
-      <li><strong>MAPA:</strong> Monitoreo continuo de la presión arterial durante 24 horas.</li>
-      <li><strong>Electrocardiograma de 12 derivaciones:</strong> Estudio de ritmo cardíaco en reposo.</li>
-    </ul>
-  </section>
+        const Banner = () => {
+            const [currentSlide, setCurrentSlide] = useState(0);
+            const timeoutRef = useRef(null);
 
-  <section id="equipo">
-    <h2>Nuestro Equipo Médico</h2>
-    <p>Contamos con profesionales certificados en cardiología y neumología. Nuestra experiencia, calidez y compromiso garantizan diagnósticos confiables y atención empática.</p>
-  </section>
+            const resetTimeout = () => {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            }
 
-  <section id="innovacion">
-    <h2>Innovación y Tecnología</h2>
-    <p>Invertimos continuamente en equipos de última generación y capacitación médica. Nuestro objetivo es mantenernos como líderes en diagnóstico cardiorrespiratorio.</p>
-  </section>
+            useEffect(() => {
+                resetTimeout();
+                timeoutRef.current = setTimeout(
+                    () => setCurrentSlide((prev) => (prev + 1) % slidesData.length),
+                    6000
+                );
+                return () => resetTimeout();
+            }, [currentSlide]);
+            
+            const handleDotClick = (index) => {
+                setCurrentSlide(index);
+            }
 
-  <section id="cobertura">
-    <h2>Zonas de Cobertura</h2>
-    <p>Prestamos servicios en Yolombó y municipios del Nordeste antioqueño como Yalí, Vegachí, Remedios, Segovia, Zaragoza, Maceo y Cisneros.</p>
-  </section>
+            return (
+                <div className="banner-container">
+                    <div className="slides-viewport">
+                        <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                            {slidesData.map((slide, index) => {
+                                if (slide.content_type === 'cover') {
+                                    return (
+                                        <div className="slide-content slide-cover" key={slide.id}>
+                                            <div className="cover-heart">
+                                                {/* SVG del ícono animado en color magenta */}
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#E30052" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                    <path d="M32 58 C12 42 4 28 12 18 C18 10 28 12 32 20 C36 12 46 10 52 18 C60 28 52 42 32 58" />
+                                                    <path d="M12 32 L20 32 L24 38 L30 24 L34 40 L40 28 L52 28">
+                                                        <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite" />
+                                                        <animate attributeName="stroke-dashoffset" values="100;0" dur="2.5s" repeatCount="indefinite" />
+                                                    </path>
+                                                </svg>
+                                            </div>
+                                            <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
+                                            <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
+                                        </div>
+                                    )
+                                }
+                                if (slide.content_type === 'logos') {
+                                    return (
+                                        <div className="slide-content slide-logos" key={slide.id}>
+                                            <img 
+                                                src="https://raw.githubusercontent.com/LineaMedica/Web/main/LOGO%203.png" 
+                                                alt="Logo Línea Médica" 
+                                                className="stacked-logo"
+                                                onError={(e) => { e.target.style.display='none'; }}
+                                            />
+                                            <img 
+                                                src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20escano.png" 
+                                                alt="Logo Escano" 
+                                                className="stacked-logo"
+                                                onError={(e) => { e.target.style.display='none'; }}
+                                            />
+                                        </div>
+                                    )
+                                }
+                                return (
+                                    <div className={`slide-content ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id}>
+                                        <div className="content-body">
+                                            <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
+                                            {slide.content_type === 'list' ? (
+                                                <ul className="info-list">
+                                                    {slide.items.map(item => (
+                                                        <li key={item.name} dangerouslySetInnerHTML={{ __html: `
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E30052">
+                                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                            </svg>
+                                                            <span>
+                                                                ${item.name}
+                                                                ${item.isNew ? '<span class="new-service-tag">NUEVO</span>' : ''}
+                                                            </span>
+                                                        `}}>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
+                                            )}
+                                        </div>
+                                        <a href="https://escanografia.com/" target="_blank" rel="noopener noreferrer" className="cta-button">
+                                            <span>Agenda tu Cita</span>
+                                        </a>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    
+                    <div className="pagination-dots">
+                        {slidesData.map((_, index) => (
+                            <div 
+                                key={index} 
+                                className={`dot ${currentSlide === 0 ? '' : 'light'} ${currentSlide === index ? 'active' : ''}`}
+                                onClick={() => handleDotClick(index)}
+                            ></div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
 
-  <section id="contacto">
-    <h2>Contacto</h2>
-    <p><strong>Dirección:</strong> Calle 20 # 20-183, Yolombó, Antioquia</p>
-    <p><strong>Teléfono:</strong> +57 323 595 7483</p>
-    <p><strong>Email:</strong> lineamedicayolombo@gmail.com</p>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Línea Médica Yolombó | Diagnóstico cardiopulmonar de confianza</p>
-  </footer>
-
-  <div class="chatbot" onclick="window.open('https://wa.me/573235957483?text=Hola%2C%20quiero%20agendar%20una%20cita.', '_blank')">
-    💬 Agenda tu cita
-  </div>
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<Banner />);
+    </script>
 </body>
 </html>
