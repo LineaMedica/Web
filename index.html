@@ -33,9 +33,10 @@
         }
 
         .banner-wrapper {
-            max-width: 480px;
+            /* Tamaño reducido en PC */
+            max-width: 400px;
             width: 100%;
-            display: flex; /* Para que el banner ocupe todo el espacio */
+            display: flex; 
         }
 
         .banner-container {
@@ -55,12 +56,12 @@
         .slides-viewport {
             width: 100%;
             overflow: hidden;
-            flex-grow: 1; /* Permite que el viewport crezca */
+            flex-grow: 1;
         }
         
         .slides-track {
             display: flex;
-            height: 100%; /* Asegura que el track ocupe toda la altura */
+            height: 100%;
             transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
@@ -69,11 +70,12 @@
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between; /* Alinea contenido y botón */
             align-items: center;
             padding: 40px 30px; 
             box-sizing: border-box;
             background-color: #ffffff;
+            min-height: 600px; /* Altura base para consistencia */
         }
         
         .pagination-dots {
@@ -103,8 +105,8 @@
         }
 
         .escano-banner .cover-heart {
-            width: 160px;
-            height: 130px;
+            width: 140px;
+            height: 110px;
             animation: escano-fadeIn-slideUp 0.8s 0.2s both;
         }
         
@@ -116,13 +118,13 @@
 
         .escano-banner .slide-cover h2 {
             color: #014d98;
-            font-size: 3.1rem; 
+            font-size: 2.8rem; 
             font-weight: 800;
             animation: escano-fadeIn-slideUp 0.8s 0.4s both;
         }
 
         .escano-banner .slide-cover p {
-            font-size: 1.2rem; 
+            font-size: 1.1rem; 
             max-width: 90%;
             color: #333;
             line-height: 1.7;
@@ -148,10 +150,10 @@
         .escano-banner .slide-logos {
             justify-content: center;
             padding-top: 0;
-            gap: 50px;
+            gap: 40px;
         }
         .escano-banner .slide-logos .stacked-logo {
-            max-width: 280px;
+            max-width: 250px;
             animation: escano-fadeIn-slideUp 0.8s both;
         }
         .escano-banner .slide-logos .stacked-logo:nth-child(1) { animation-delay: 0.2s; }
@@ -162,7 +164,7 @@
         }
 
         .escano-banner .slide-content h2 {
-            font-size: 2.9rem; 
+            font-size: 2.5rem; 
             color: #014d98;
             margin-bottom: 25px;
             font-weight: 400;
@@ -188,16 +190,16 @@
             text-align: left;
             width: 100%;
             columns: 2;
-            gap: 25px;
+            gap: 20px;
         }
         
         .escano-banner .info-list li {
-            font-size: 1rem; 
+            font-size: 0.95rem; 
             color: #333;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             break-inside: avoid-column;
             font-weight: 400;
         }
@@ -214,7 +216,7 @@
         .escano-banner .new-service-tag {
             background-color: #ffc107;
             color: #333;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             padding: 3px 7px;
             border-radius: 5px;
@@ -222,7 +224,7 @@
         }
         
         .escano-banner .slide-content p {
-            font-size: 1.2rem; 
+            font-size: 1.1rem; 
             color: #333;
             line-height: 1.7;
             font-weight: 400;
@@ -236,17 +238,17 @@
         .escano-banner .cta-button {
             background: linear-gradient(45deg, #E30052, #c90049);
             color: white;
-            padding: 18px 40px;
+            padding: 16px 35px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 10px;
             box-shadow: 0 8px 20px rgba(227, 0, 82, 0.3);
-            margin-top: 30px; 
+            margin-top: 25px; 
         }
 
         .escano-banner .cta-button:hover {
@@ -263,7 +265,6 @@
 
         .credit-banner .slide-cover {
             background: linear-gradient(145deg, rgba(185, 153, 64, 0.78), #ffffff);
-            justify-content: center;
             gap: 25px;
         }
 
@@ -280,13 +281,13 @@
 
         .credit-banner .slide-cover h2 {
             color: #014d98;
-            font-size: 3.1rem; 
+            font-size: 2.8rem; 
             font-weight: 800;
             animation: credit-fadeIn-slideUp 0.8s 0.4s both;
         }
 
         .credit-banner .slide-cover p {
-            font-size: 1.3rem; 
+            font-size: 1.2rem; 
             max-width: 90%;
             color: #333;
             line-height: 1.7;
@@ -308,8 +309,20 @@
             background-color: #f8f9fa;
         }
 
+        .credit-banner .slide-logos {
+            justify-content: center;
+            padding-top: 0;
+            gap: 40px;
+        }
+        .credit-banner .slide-logos .stacked-logo {
+            max-width: 250px;
+            animation: credit-fadeIn-slideUp 0.8s both;
+        }
+        .credit-banner .slide-logos .stacked-logo:nth-child(1) { animation-delay: 0.2s; }
+        .credit-banner .slide-logos .stacked-logo:nth-child(2) { animation-delay: 0.4s; }
+
         .credit-banner .slide-content h2 {
-            font-size: 2.9rem; 
+            font-size: 2.5rem; 
             color: #014d98;
             margin-bottom: 25px;
             font-weight: 400;
@@ -339,7 +352,7 @@
         }
         
         .credit-banner .info-list li {
-            font-size: 1rem; 
+            font-size: 0.95rem; 
             color: #333;
             margin-bottom: 14px;
             display: flex;
@@ -359,7 +372,7 @@
         }
         
         .credit-banner .slide-content p {
-            font-size: 1.2rem; 
+            font-size: 1.1rem; 
             color: #333;
             line-height: 1.7;
             font-weight: 400;
@@ -373,11 +386,11 @@
         .credit-banner .cta-button {
             background: linear-gradient(45deg, #014d98, #057dcb);
             color: white;
-            padding: 18px 40px;
+            padding: 16px 35px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -390,12 +403,6 @@
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 12px 25px rgba(1, 77, 152, 0.4);
         }
-
-        .credit-banner .md-capital-logo {
-            margin-top: 40px;
-            max-width: 200px;
-            opacity: 0.8;
-        }
         
         .credit-banner .dot.active {
             background-color: #014d98;
@@ -405,15 +412,15 @@
         /* --- AJUSTES RESPONSIVE --- */
         @media (max-width: 480px) {
             .slide-content {
-                min-height: auto; /* Permite que el contenido defina la altura */
-                padding: 40px 25px 70px; /* Ajusta padding para móvil */
+                min-height: auto;
+                padding: 40px 25px 70px;
             }
             .escano-banner .info-list,
             .credit-banner .info-list {
                 columns: 1;
             }
             .slide-content h2, .slide-cover h2 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
              .slide-cover p {
                 font-size: 1.1rem;
@@ -425,13 +432,13 @@
         }
         @media (max-width: 380px) {
             .slide-content h2, .slide-cover h2 {
-                font-size: 1.9rem;
+                font-size: 1.8rem;
             }
              .slide-cover p {
                 font-size: 1rem;
             }
             .info-list li {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -535,6 +542,10 @@
                 content_type: "cta",
                 text: "Estás a un solo clic de obtener la financiación que necesitas para cuidar de tu salud.",
                 cta_link: "https://app.mdcapital.com.co/self-credit"
+            },
+            {
+                id: 5,
+                content_type: "logos",
             }
         ];
 
@@ -675,6 +686,14 @@
                                         </div>
                                     )
                                 }
+                                if (slide.content_type === 'logos') {
+                                    return (
+                                        <div className="slide-content slide-logos" key={slide.id}>
+                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/LOGO%203.png" alt="Logo Línea Médica" className="stacked-logo" onError={(e) => { e.target.style.display='none'; }} />
+                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20MD.png" alt="Logo MD Capital" className="stacked-logo" onError={(e) => { e.target.style.display='none'; }}/>
+                                        </div>
+                                    )
+                                }
                                 return (
                                     <div className={`slide-content ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id}>
                                         <div className="content-body">
@@ -699,7 +718,6 @@
                                                 <a href={slide.cta_link} target="_blank" rel="noopener noreferrer" className="cta-button">
                                                     <span>Solicita tu Crédito</span>
                                                 </a>
-                                                <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/M%20CAPITAL%20LOGO.png" alt="Logo MD Capital" className="md-capital-logo" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/200x50/ffffff/a0aec0?text=M+CAPITAL'; }}/>
                                             </>
                                         ) : null}
                                     </div>
