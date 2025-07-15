@@ -255,19 +255,35 @@
             transform: scale(1.2);
         }
         
-        .dot.light {
-            background-color: #cdd6e0;
-        }
-        .dot.light.active {
-            background-color: #003366;
-        }
-
+        /* --- AJUSTES RESPONSIVE --- */
         @media (max-width: 480px) {
+            .slide-content {
+                min-height: auto; /* Permite que el contenido defina la altura */
+                padding: 40px 25px 70px; /* Ajusta padding para móvil */
+            }
             .info-list {
                 columns: 1;
             }
             .slide-content h2, .slide-cover h2 {
                 font-size: 2.2rem;
+            }
+             .slide-cover p {
+                font-size: 1.1rem;
+            }
+            .cta-button {
+                font-size: 1.1rem;
+                padding: 16px 35px;
+            }
+        }
+        @media (max-width: 380px) {
+            .slide-content h2, .slide-cover h2 {
+                font-size: 1.9rem;
+            }
+             .slide-cover p {
+                font-size: 1rem;
+            }
+            .info-list li {
+                font-size: 0.9rem;
             }
         }
     </style>
