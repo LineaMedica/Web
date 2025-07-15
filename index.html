@@ -35,6 +35,7 @@
         .banner-wrapper {
             max-width: 480px;
             width: 100%;
+            display: flex; /* Para que el banner ocupe todo el espacio */
         }
 
         .banner-container {
@@ -54,22 +55,23 @@
         .slides-viewport {
             width: 100%;
             overflow: hidden;
+            flex-grow: 1; /* Permite que el viewport crezca */
         }
         
         .slides-track {
             display: flex;
+            height: 100%; /* Asegura que el track ocupe toda la altura */
             transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
         .slide-content {
             width: 100%;
-            min-height: 680px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px 30px 80px; 
+            padding: 40px 30px; 
             box-sizing: border-box;
             background-color: #ffffff;
         }
@@ -97,7 +99,6 @@
         
         .escano-banner .slide-cover {
             background: linear-gradient(145deg, white, rgba(190, 237, 255, 0.46));
-            justify-content: center;
             gap: 25px;
         }
 
@@ -145,8 +146,8 @@
         }
         
         .escano-banner .slide-logos {
-            justify-content: flex-start;
-            padding-top: 120px;
+            justify-content: center;
+            padding-top: 0;
             gap: 50px;
         }
         .escano-banner .slide-logos .stacked-logo {
@@ -278,7 +279,7 @@
         }
 
         .credit-banner .slide-cover h2 {
-            color: #014d98; /* Ajustado para el fondo claro */
+            color: #014d98;
             font-size: 3.1rem; 
             font-weight: 800;
             animation: credit-fadeIn-slideUp 0.8s 0.4s both;
@@ -287,7 +288,7 @@
         .credit-banner .slide-cover p {
             font-size: 1.3rem; 
             max-width: 90%;
-            color: #333; /* Ajustado para el fondo claro */
+            color: #333;
             line-height: 1.7;
             font-weight: 400;
             animation: credit-fadeIn-slideUp 0.8s 0.6s both;
@@ -404,8 +405,8 @@
         /* --- AJUSTES RESPONSIVE --- */
         @media (max-width: 480px) {
             .slide-content {
-                min-height: auto;
-                padding: 40px 25px 70px;
+                min-height: auto; /* Permite que el contenido defina la altura */
+                padding: 40px 25px 70px; /* Ajusta padding para móvil */
             }
             .escano-banner .info-list,
             .credit-banner .info-list {
