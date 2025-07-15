@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banner Interactivo ESCANO - Versión Profesional</title>
+    <title>Banners Interactivos</title>
     <!-- React y ReactDOM desde CDN -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -17,11 +17,24 @@
         body {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
             background-color: #eef2f7;
             padding: 20px;
             font-family: 'Poppins', sans-serif;
+        }
+
+        .main-layout {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .banner-wrapper {
+            max-width: 480px;
+            width: 100%;
         }
 
         .banner-container {
@@ -32,9 +45,8 @@
             border-radius: 30px;
             box-shadow: 0 20px 50px rgba(0, 85, 170, 0.15);
             overflow: hidden;
-            max-width: 480px;
             width: 100%;
-            margin: 20px auto;
+            margin: 0 auto;
             border: 1px solid #e0e7ff;
             text-align: center;
         }
@@ -62,175 +74,6 @@
             background-color: #ffffff;
         }
         
-        /* --- ESTILOS PORTADA (TEMA CLARO) --- */
-        .slide-cover {
-            background: linear-gradient(145deg, white, rgba(190, 237, 255, 0.46));
-            justify-content: center;
-            gap: 25px;
-        }
-
-        .cover-heart {
-            width: 160px;
-            height: 130px;
-            animation: fadeIn-slideUp 0.8s 0.2s both;
-        }
-        
-        .cover-heart svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 20px rgba(227, 0, 82, 0.2));
-        }
-
-        .slide-cover h2 {
-            color: #014d98;
-            font-size: 3.1rem; 
-            font-weight: 800; /* Extra-Bold */
-            animation: fadeIn-slideUp 0.8s 0.4s both;
-        }
-
-        .slide-cover p {
-            font-size: 1.2rem; 
-            max-width: 90%;
-            color: #333; /* Texto oscuro para legibilidad */
-            line-height: 1.7;
-            font-weight: 400; /* Regular */
-            animation: fadeIn-slideUp 0.8s 0.6s both;
-        }
-
-        .slide-cover p strong {
-            font-weight: 700; /* Bold */
-            color: #014d98;
-        }
-        
-        .highlight-blue {
-            color: #057dcb;
-            font-weight: 700;
-        }
-        
-        @keyframes fadeIn-slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* --- ESTILOS SLIDE DE LOGOS (AJUSTADO) --- */
-        .slide-logos {
-            justify-content: flex-start;
-            padding-top: 120px;
-            gap: 50px;
-            background-color: #ffffff; /* Fondo blanco */
-        }
-        .slide-logos .stacked-logo {
-            max-width: 280px;
-            animation: fadeIn-slideUp 0.8s both;
-        }
-        .slide-logos .stacked-logo:nth-child(1) { animation-delay: 0.2s; }
-        .slide-logos .stacked-logo:nth-child(2) { animation-delay: 0.4s; }
-        
-        /* --- ESTILOS GENERALES --- */
-        
-        .slide-content.slide-background-gray {
-            background-color: #f8f9fa;
-        }
-
-        .slide-content h2 {
-            font-size: 2.9rem; 
-            color: #014d98;
-            margin-bottom: 25px;
-            font-weight: 400; /* Regular */
-            line-height: 1.2;
-        }
-        
-        .slide-content h2 strong {
-            font-weight: 800; /* Extra-Bold */
-        }
-
-        .slide-content .content-body {
-             flex-grow: 1;
-             display: flex;
-             flex-direction: column;
-             justify-content: center;
-             align-items: center;
-             width: 100%;
-        }
-        
-        .info-list {
-            list-style: none;
-            padding-left: 0;
-            text-align: left;
-            width: 100%;
-            columns: 2;
-            gap: 25px;
-        }
-        
-        .info-list li {
-            font-size: 1rem; 
-            color: #333;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            break-inside: avoid-column;
-            font-weight: 400; /* Regular */
-        }
-        
-        .info-list li strong {
-            font-weight: 600; /* Semi-Bold */
-        }
-        
-        .info-list li svg {
-            flex-shrink: 0;
-            color: #E30052; /* Color Magenta */
-        }
-
-        .new-service-tag {
-            background-color: #ffc107;
-            color: #333;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 3px 7px;
-            border-radius: 5px;
-            margin-left: 5px;
-        }
-        
-        .slide-content p {
-            font-size: 1.2rem; 
-            color: #333;
-            line-height: 1.7;
-            font-weight: 400; /* Regular */
-        }
-        
-        .slide-content p strong {
-            font-weight: 700; /* Bold */
-            color: #014d98;
-        }
-
-        .cta-button {
-            background: linear-gradient(45deg, #E30052, #c90049); /* Color Magenta */
-            color: white;
-            padding: 18px 40px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.3rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 8px 20px rgba(227, 0, 82, 0.3);
-            margin-top: 30px; 
-        }
-
-        .cta-button:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(227, 0, 82, 0.4);
-        }
-        
         .pagination-dots {
             position: absolute;
             bottom: 20px;
@@ -249,8 +92,311 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
+
+        /* --- ESTILOS BANNER ESCANO --- */
         
-        .dot.active {
+        .escano-banner .slide-cover {
+            background: linear-gradient(145deg, white, rgba(190, 237, 255, 0.46));
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .escano-banner .cover-heart {
+            width: 160px;
+            height: 130px;
+            animation: escano-fadeIn-slideUp 0.8s 0.2s both;
+        }
+        
+        .escano-banner .cover-heart svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(227, 0, 82, 0.2));
+        }
+
+        .escano-banner .slide-cover h2 {
+            color: #014d98;
+            font-size: 3.1rem; 
+            font-weight: 800;
+            animation: escano-fadeIn-slideUp 0.8s 0.4s both;
+        }
+
+        .escano-banner .slide-cover p {
+            font-size: 1.2rem; 
+            max-width: 90%;
+            color: #333;
+            line-height: 1.7;
+            font-weight: 400;
+            animation: escano-fadeIn-slideUp 0.8s 0.6s both;
+        }
+
+        .escano-banner .slide-cover p strong {
+            font-weight: 700;
+            color: #014d98;
+        }
+        
+        .escano-banner .highlight-blue {
+            color: #057dcb;
+            font-weight: 700;
+        }
+        
+        @keyframes escano-fadeIn-slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .escano-banner .slide-logos {
+            justify-content: flex-start;
+            padding-top: 120px;
+            gap: 50px;
+        }
+        .escano-banner .slide-logos .stacked-logo {
+            max-width: 280px;
+            animation: escano-fadeIn-slideUp 0.8s both;
+        }
+        .escano-banner .slide-logos .stacked-logo:nth-child(1) { animation-delay: 0.2s; }
+        .escano-banner .slide-logos .stacked-logo:nth-child(2) { animation-delay: 0.4s; }
+        
+        .escano-banner .slide-content.slide-background-gray {
+            background-color: #f8f9fa;
+        }
+
+        .escano-banner .slide-content h2 {
+            font-size: 2.9rem; 
+            color: #014d98;
+            margin-bottom: 25px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        .escano-banner .slide-content h2 strong {
+            font-weight: 800;
+        }
+
+        .escano-banner .content-body {
+             flex-grow: 1;
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             width: 100%;
+        }
+        
+        .escano-banner .info-list {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+            width: 100%;
+            columns: 2;
+            gap: 25px;
+        }
+        
+        .escano-banner .info-list li {
+            font-size: 1rem; 
+            color: #333;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            break-inside: avoid-column;
+            font-weight: 400;
+        }
+        
+        .escano-banner .info-list li strong {
+            font-weight: 600;
+        }
+        
+        .escano-banner .info-list li svg {
+            flex-shrink: 0;
+            color: #E30052;
+        }
+
+        .escano-banner .new-service-tag {
+            background-color: #ffc107;
+            color: #333;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+        
+        .escano-banner .slide-content p {
+            font-size: 1.2rem; 
+            color: #333;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .escano-banner .slide-content p strong {
+            font-weight: 700;
+            color: #014d98;
+        }
+
+        .escano-banner .cta-button {
+            background: linear-gradient(45deg, #E30052, #c90049);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(227, 0, 82, 0.3);
+            margin-top: 30px; 
+        }
+
+        .escano-banner .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(227, 0, 82, 0.4);
+        }
+        
+        .escano-banner .dot.active {
+            background-color: #014d98;
+            transform: scale(1.2);
+        }
+
+        /* --- ESTILOS BANNER CRÉDITO --- */
+
+        .credit-banner .slide-cover {
+            background: linear-gradient(145deg, rgba(185, 153, 64, 0.78), #ffffff);
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .credit-banner .cover-icon {
+            width: 120px;
+            height: 120px;
+            animation: credit-fadeIn-slideUp 0.8s 0.2s both;
+        }
+        
+        .credit-banner .cover-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .credit-banner .slide-cover h2 {
+            color: #014d98; /* Ajustado para el fondo claro */
+            font-size: 3.1rem; 
+            font-weight: 800;
+            animation: credit-fadeIn-slideUp 0.8s 0.4s both;
+        }
+
+        .credit-banner .slide-cover p {
+            font-size: 1.3rem; 
+            max-width: 90%;
+            color: #333; /* Ajustado para el fondo claro */
+            line-height: 1.7;
+            font-weight: 400;
+            animation: credit-fadeIn-slideUp 0.8s 0.6s both;
+        }
+
+        .credit-banner .slide-cover p strong {
+            font-weight: 700;
+            color: #014d98;
+        }
+        
+        @keyframes credit-fadeIn-slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .credit-banner .slide-content.slide-background-gray {
+            background-color: #f8f9fa;
+        }
+
+        .credit-banner .slide-content h2 {
+            font-size: 2.9rem; 
+            color: #014d98;
+            margin-bottom: 25px;
+            font-weight: 400;
+            line-height: 1.2;
+        }
+        
+        .credit-banner .slide-content h2 strong {
+            font-weight: 800;
+        }
+
+        .credit-banner .content-body {
+             flex-grow: 1;
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             width: 100%;
+        }
+        
+        .credit-banner .info-list {
+            list-style: none;
+            padding-left: 0;
+            text-align: left;
+            width: 100%;
+            columns: 2;
+            gap: 25px;
+        }
+        
+        .credit-banner .info-list li {
+            font-size: 1rem; 
+            color: #333;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            break-inside: avoid-column;
+            font-weight: 400;
+        }
+        
+        .credit-banner .info-list li strong {
+            font-weight: 600;
+        }
+        
+        .credit-banner .info-list li svg {
+            flex-shrink: 0;
+            color: #E30052;
+        }
+        
+        .credit-banner .slide-content p {
+            font-size: 1.2rem; 
+            color: #333;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+        
+        .credit-banner .slide-content p strong {
+            font-weight: 700;
+            color: #014d98;
+        }
+
+        .credit-banner .cta-button {
+            background: linear-gradient(45deg, #014d98, #057dcb);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(1, 77, 152, 0.3);
+            margin-top: 30px; 
+        }
+
+        .credit-banner .cta-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(1, 77, 152, 0.4);
+        }
+
+        .credit-banner .md-capital-logo {
+            margin-top: 40px;
+            max-width: 200px;
+            opacity: 0.8;
+        }
+        
+        .credit-banner .dot.active {
             background-color: #014d98;
             transform: scale(1.2);
         }
@@ -258,10 +404,11 @@
         /* --- AJUSTES RESPONSIVE --- */
         @media (max-width: 480px) {
             .slide-content {
-                min-height: auto; /* Permite que el contenido defina la altura */
-                padding: 40px 25px 70px; /* Ajusta padding para móvil */
+                min-height: auto;
+                padding: 40px 25px 70px;
             }
-            .info-list {
+            .escano-banner .info-list,
+            .credit-banner .info-list {
                 columns: 1;
             }
             .slide-content h2, .slide-cover h2 {
@@ -294,7 +441,8 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
         
-        const slidesData = [
+        // --- DATOS PARA BANNER ESCANO ---
+        const slidesDataEscano = [
             {
                 id: 0,
                 title: "¿Necesitas algún estudio médico?",
@@ -342,13 +490,60 @@
             }
         ];
 
+        // --- DATOS PARA BANNER CRÉDITO ---
+        const slidesDataCredit = [
+            {
+                id: 0,
+                title: "Financia tu Bienestar",
+                content_type: "cover",
+                text: "Créditos <strong>rápidos</strong> y <strong>fáciles</strong> a través de <strong>MD Capital</strong>."
+            },
+            { 
+                id: 1,
+                title: "<strong>Beneficios</strong> de tu Crédito",
+                content_type: "list",
+                items: [
+                    { name: "Proceso <strong>100% digital</strong>" },
+                    { name: "<strong>Fácil y Rápido</strong>, sin papeleos" },
+                    { name: "<strong>Aprobación</strong> en minutos" },
+                    { name: "Paga a tu ritmo y <strong>sin codeudor</strong>" },
+                    { name: "Múltiples <strong>opciones de pago</strong>" },
+                    { name: "Totalmente <strong>confiable y seguro</strong>" },
+                ]
+            },
+            { 
+                id: 2,
+                title: "¿Cómo <strong>Funciona</strong>?",
+                content_type: "list",
+                items: [
+                    { name: "<strong>1. Solicita</strong> tu crédito en línea." },
+                    { name: "<strong>2. Recibe</strong> aprobación inmediata." },
+                    { name: "<strong>3. Usa</strong> tu crédito para tus servicios." },
+                    { name: "<strong>4. Paga</strong> tus cuotas fácilmente." },
+                ]
+            },
+            { 
+                id: 3,
+                title: "No pongas en <strong>pausa tu salud</strong>",
+                content_type: "paragraph",
+                text: "Accede a un crédito <strong>fácil y rápido</strong>, sin preocuparte por el costo. ¡Tu bienestar es nuestra prioridad!"
+            },
+            {
+                id: 4,
+                title: "Solicita tu <strong>Crédito Ahora</strong>",
+                content_type: "cta",
+                text: "Estás a un solo clic de obtener la financiación que necesitas para cuidar de tu salud.",
+                cta_link: "https://app.mdcapital.com.co/self-credit"
+            }
+        ];
+
         const CheckIcon = () => (
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
             </svg>
         );
 
-        const Banner = () => {
+        const EscanoBanner = () => {
             const [currentSlide, setCurrentSlide] = useState(0);
             const timeoutRef = useRef(null);
 
@@ -359,7 +554,7 @@
             useEffect(() => {
                 resetTimeout();
                 timeoutRef.current = setTimeout(
-                    () => setCurrentSlide((prev) => (prev + 1) % slidesData.length),
+                    () => setCurrentSlide((prev) => (prev + 1) % slidesDataEscano.length),
                     6000
                 );
                 return () => resetTimeout();
@@ -370,15 +565,14 @@
             }
 
             return (
-                <div className="banner-container">
+                <div className="banner-container escano-banner">
                     <div className="slides-viewport">
                         <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                            {slidesData.map((slide, index) => {
+                            {slidesDataEscano.map((slide, index) => {
                                 if (slide.content_type === 'cover') {
                                     return (
                                         <div className="slide-content slide-cover" key={slide.id}>
                                             <div className="cover-heart">
-                                                {/* SVG del ícono animado en color magenta */}
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#E30052" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                                                     <path d="M32 58 C12 42 4 28 12 18 C18 10 28 12 32 20 C36 12 46 10 52 18 C60 28 52 42 32 58" />
                                                     <path d="M12 32 L20 32 L24 38 L30 24 L34 40 L40 28 L52 28">
@@ -395,18 +589,8 @@
                                 if (slide.content_type === 'logos') {
                                     return (
                                         <div className="slide-content slide-logos" key={slide.id}>
-                                            <img 
-                                                src="https://raw.githubusercontent.com/LineaMedica/Web/main/LOGO%203.png" 
-                                                alt="Logo Línea Médica" 
-                                                className="stacked-logo"
-                                                onError={(e) => { e.target.style.display='none'; }}
-                                            />
-                                            <img 
-                                                src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20escano.png" 
-                                                alt="Logo Escano" 
-                                                className="stacked-logo"
-                                                onError={(e) => { e.target.style.display='none'; }}
-                                            />
+                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/LOGO%203.png" alt="Logo Línea Médica" className="stacked-logo" onError={(e) => { e.target.style.display='none'; }} />
+                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20escano.png" alt="Logo Escano" className="stacked-logo" onError={(e) => { e.target.style.display='none'; }}/>
                                         </div>
                                     )
                                 }
@@ -443,21 +627,111 @@
                     </div>
                     
                     <div className="pagination-dots">
-                        {slidesData.map((_, index) => (
-                            <div 
-                                key={index} 
-                                className={`dot ${currentSlide === 0 ? '' : 'light'} ${currentSlide === index ? 'active' : ''}`}
-                                onClick={() => handleDotClick(index)}
-                            ></div>
+                        {slidesDataEscano.map((_, index) => (
+                            <div key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => handleDotClick(index)}></div>
                         ))}
                     </div>
                 </div>
             );
         };
 
+        const CreditBanner = () => {
+            const [currentSlide, setCurrentSlide] = useState(0);
+            const timeoutRef = useRef(null);
+
+            const resetTimeout = () => {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            }
+
+            useEffect(() => {
+                resetTimeout();
+                timeoutRef.current = setTimeout(
+                    () => setCurrentSlide((prev) => (prev + 1) % slidesDataCredit.length),
+                    7000
+                );
+                return () => resetTimeout();
+            }, [currentSlide]);
+            
+            const handleDotClick = (index) => {
+                setCurrentSlide(index);
+            }
+
+            return (
+                <div className="banner-container credit-banner">
+                    <div className="slides-viewport">
+                        <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                            {slidesDataCredit.map((slide, index) => {
+                                if (slide.content_type === 'cover') {
+                                    return (
+                                        <div className="slide-content slide-cover" key={slide.id}>
+                                            <div className="cover-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#014d98">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75v10.5A2.25 2.25 0 004.5 19.5z" />
+                                                </svg>
+                                            </div>
+                                            <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
+                                            <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
+                                        </div>
+                                    )
+                                }
+                                return (
+                                    <div className={`slide-content ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id}>
+                                        <div className="content-body">
+                                            <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
+                                            {slide.content_type === 'list' ? (
+                                                <ul className="info-list">
+                                                    {slide.items.map(item => (
+                                                        <li key={item.name}>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#014d98">
+                                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                            </svg>
+                                                            <span dangerouslySetInnerHTML={{ __html: item.name }}></span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            ) : (
+                                                <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
+                                            )}
+                                        </div>
+                                        {slide.content_type === 'cta' ? (
+                                            <>
+                                                <a href={slide.cta_link} target="_blank" rel="noopener noreferrer" className="cta-button">
+                                                    <span>Solicita tu Crédito</span>
+                                                </a>
+                                                <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/M%20CAPITAL%20LOGO.png" alt="Logo MD Capital" className="md-capital-logo" onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/200x50/ffffff/a0aec0?text=M+CAPITAL'; }}/>
+                                            </>
+                                        ) : null}
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                    
+                    <div className="pagination-dots">
+                        {slidesDataCredit.map((_, index) => (
+                            <div key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => handleDotClick(index)}></div>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        const App = () => {
+            return (
+                <div className="main-layout">
+                    <div className="banner-wrapper">
+                        <EscanoBanner />
+                    </div>
+                    <div className="banner-wrapper">
+                        <CreditBanner />
+                    </div>
+                </div>
+            )
+        }
+
         const container = document.getElementById('root');
         const root = ReactDOM.createRoot(container);
-        root.render(<Banner />);
+        root.render(<App />);
     </script>
 </body>
 </html>
