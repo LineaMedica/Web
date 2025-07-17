@@ -3,49 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banners Interactivos</title>
+    <title>Línea Médica Yolombó - Cuidamos de ti</title>
+    
     <!-- React y ReactDOM desde CDN -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- Babel para transpilar JSX en el navegador -->
+    <!-- Babel para transpilar JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <!-- Google Fonts: Poppins con varios grosores -->
+    
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Iconos (Feather Icons) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            background-color: #eef2f7;
-            padding: 20px;
-            font-family: 'Poppins', sans-serif;
+        /* --- RESET Y ESTILOS GLOBALES --- */
+        :root {
+            --primary-blue: #014d98;
+            --secondary-blue: #057dcb;
+            --accent-pink: #E30052;
+            --light-gray: #f0f4f8;
+            --dark-text: #333;
+            --white: #ffffff;
+            --shadow-color: rgba(0, 85, 170, 0.1);
+            --whatsapp-green: #25D366;
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary-blue);
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 800;
+        }
+        
+        h2 .highlight {
+            color: var(--secondary-blue);
+        }
+
+        /* --- HEADER Y NAVEGACIÓN --- */
+        .main-header {
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 800;
+            z-index: 1002;
+        }
+        
+        .logo img {
+            width: 50px;
+            height: auto;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-pink);
+            transition: width 0.3s ease;
+        }
+
+        .main-nav a:hover {
+            color: var(--accent-pink);
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-header-btn {
+            background: var(--accent-pink);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(227, 0, 82, 0.2);
+        }
+        
+        .cta-header-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(227, 0, 82, 0.3);
+        }
+
+        /* --- MENÚ MÓVIL (HAMBURGUESA) --- */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 1002;
+            color: var(--primary-blue);
+        }
+        
+        .mobile-nav {
+            display: none;
+        }
+
+        /* --- SECCIÓN HERO --- */
+        .hero-section {
+            background-image: linear-gradient(rgba(238, 242, 247, 0.8), rgba(216, 226, 239, 0.8)), url('https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY2866.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            color: var(--dark-text);
+        }
+
+        .hero-logo {
+            width: 300px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .hero-section h1 .highlight {
+            color: var(--secondary-blue);
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: #555;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .hero-cta-btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow-color);
+        }
+        
+        .hero-cta-btn:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--shadow-color);
+        }
+
+        /* --- SOBRE NOSOTROS --- */
+        .about-us-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        .about-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-us-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .about-us-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .about-us-content p {
+            margin-bottom: 15px;
+            color: #555;
+            text-align: justify;
+        }
+
+        /* --- SECCIÓN SERVICIOS --- */
+        .services-section {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            border: 1px solid #e0e7ff;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-card-img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-card-img-container img {
+            transform: scale(1.05);
+        }
+        
+        .service-card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .service-card-content p {
+            font-size: 0.95rem;
+            color: #666;
+            flex-grow: 1;
+            margin-bottom: 20px;
+        }
+
+        .service-cta-btn {
+            padding: 10px 25px;
+            background: var(--accent-pink);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            align-self: center;
+        }
+
+        .service-cta-btn:hover {
+            background: #c90049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(227, 0, 82, 0.2);
+        }
+
+        /* --- SECCIÓN CONVENIOS (BANNERS) --- */
+        .partnerships-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
         .main-layout {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 30px;
             width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .banner-wrapper {
-            /* Tamaño reducido en PC */
-            max-width: 400px;
+            max-width: 350px;
             width: 100%;
-            display: flex; 
+            display: flex;
         }
 
         .banner-container {
             position: relative;
             display: flex;
             flex-direction: column;
-            background: #ffffff;
+            background: var(--white);
             border-radius: 30px;
-            box-shadow: 0 20px 50px rgba(0, 85, 170, 0.15);
+            box-shadow: 0 20px 50px var(--shadow-color);
             overflow: hidden;
             width: 100%;
             margin: 0 auto;
@@ -70,12 +385,13 @@
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Alinea contenido y botón */
+            justify-content: space-between;
             align-items: center;
-            padding: 40px 30px; 
+            padding: 40px 30px;
             box-sizing: border-box;
-            background-color: #ffffff;
-            min-height: 600px; /* Altura base para consistencia */
+            background-color: var(--white);
+            min-height: 550px;
+            gap: 20px;
         }
         
         .pagination-dots {
@@ -89,6 +405,9 @@
         }
         
         .dot {
+            background: none;
+            border: none;
+            padding: 0;
             width: 12px;
             height: 12px;
             border-radius: 50%;
@@ -96,502 +415,1047 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
-        /* --- ESTILOS BANNER ESCANO --- */
         
-        .escano-banner .slide-cover {
-            background: linear-gradient(145deg, white, rgba(190, 237, 255, 0.46));
-            gap: 25px;
+        .dot:focus {
+            outline: 2px solid var(--secondary-blue);
+            outline-offset: 2px;
         }
 
-        .escano-banner .cover-heart {
-            width: 140px;
-            height: 110px;
-            animation: escano-fadeIn-slideUp 0.8s 0.2s both;
+        /* --- ESTILOS BANNER GENÉRICOS --- */
+        .slide-cover { justify-content: center; }
+        .slide-cover .cover-icon-wrapper {
+            height: 112px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
         }
-        
-        .escano-banner .cover-heart svg {
+        .escano-banner .cover-icon-wrapper > div,
+        .pedia-banner .cover-icon-wrapper > div {
+             width: 112px;
+             height: 88px;
+        }
+        .credit-banner .cover-icon-wrapper > div {
+            width: 96px;
+            height: 96px;
+        }
+        .slide-cover .cover-icon-wrapper svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 20px rgba(227, 0, 82, 0.2));
         }
+        .slide-cover h2 { font-size: 2.2rem; font-weight: 800; animation: fadeIn-slideUp 0.8s 0.4s both; }
+        .slide-cover p { font-size: 1rem; max-width: 90%; color: var(--dark-text); line-height: 1.7; font-weight: 400; animation: fadeIn-slideUp 0.8s 0.6s both; }
+        .slide-cover p strong { font-weight: 700; color: var(--primary-blue); }
+        .slide-logos { justify-content: center; padding-top: 0; padding-bottom: 0; gap: 40px; }
+        .slide-logos .stacked-logo { max-width: 180px; height: auto; object-fit: contain; animation: fadeIn-slideUp 0.8s both; }
+        .slide-logos .stacked-logo:nth-child(1) { animation-delay: 0.2s; }
+        .slide-logos .stacked-logo:nth-child(2) { animation-delay: 0.4s; }
+        .slide-content.slide-background-gray { background-color: #f8f9fa; }
+        .slide-content h2 { font-size: 2rem; color: var(--primary-blue); margin-bottom: 25px; font-weight: 400; line-height: 1.2; }
+        .slide-content h2 strong { font-weight: 800; }
+        .content-body { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; flex-grow: 1;}
+        .info-list { list-style: none; padding-left: 0; text-align: left; width: 100%; columns: 1; gap: 10px; }
+        .info-list li { font-size: 0.9rem; color: var(--dark-text); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; break-inside: avoid-column; font-weight: 400; }
+        .info-list li strong { font-weight: 600; }
+        .info-list li svg { flex-shrink: 0; width: 20px; height: 20px; }
+        .slide-content p { font-size: 1rem; color: var(--dark-text); line-height: 1.7; font-weight: 400; }
+        .slide-content p strong { font-weight: 700; color: var(--primary-blue); }
+        .cta-button { padding: 14px 30px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1rem; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; margin-bottom: 20px; }
+        .cta-button:hover { transform: translateY(-4px) scale(1.05); }
+        @keyframes fadeIn-slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        .escano-banner .slide-cover h2 {
-            color: #014d98;
-            font-size: 2.8rem; 
-            font-weight: 800;
-            animation: escano-fadeIn-slideUp 0.8s 0.4s both;
-        }
+        /* --- BANNER ESCANO --- */
+        .escano-banner .slide-cover { background: linear-gradient(145deg, white, rgba(190, 237, 255, 0.46)); }
+        .escano-banner .cover-heart svg { filter: drop-shadow(0 0 20px rgba(227, 0, 82, 0.2)); }
+        .escano-banner .info-list li svg { color: var(--accent-pink); }
+        .escano-banner .new-service-tag { background-color: #ffc107; color: var(--dark-text); font-size: 0.7rem; font-weight: 700; padding: 3px 7px; border-radius: 5px; margin-left: 5px; }
+        .escano-banner .cta-button { background: linear-gradient(45deg, var(--accent-pink), #c90049); color: white; box-shadow: 0 8px 20px rgba(227, 0, 82, 0.3); }
+        .escano-banner .cta-button:hover { box-shadow: 0 12px 25px rgba(227, 0, 82, 0.4); }
+        .escano-banner .dot.active { background-color: var(--primary-blue); transform: scale(1.2); }
 
-        .escano-banner .slide-cover p {
-            font-size: 1.1rem; 
-            max-width: 90%;
-            color: #333;
-            line-height: 1.7;
-            font-weight: 400;
-            animation: escano-fadeIn-slideUp 0.8s 0.6s both;
-        }
+        /* --- BANNER CRÉDITO --- */
+        .credit-banner .slide-cover { background: linear-gradient(145deg, rgba(185, 153, 64, 0.1), var(--white)); }
+        .credit-banner .cover-icon { animation: credit-card-float 3s ease-in-out infinite 1s; }
+        @keyframes credit-card-float { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
+        .credit-banner .info-list li svg { color: var(--primary-blue); }
+        .credit-banner .cta-button { background: linear-gradient(45deg, var(--primary-blue), var(--secondary-blue)); color: white; box-shadow: 0 8px 20px rgba(1, 77, 152, 0.3); }
+        .credit-banner .cta-button:hover { box-shadow: 0 12px 25px rgba(1, 77, 152, 0.4); }
+        .credit-banner .dot.active { background-color: var(--primary-blue); transform: scale(1.2); }
+        .credit-banner .slide-content.slide-cta { justify-content: center; }
 
-        .escano-banner .slide-cover p strong {
-            font-weight: 700;
-            color: #014d98;
-        }
+        /* --- BANNER PEDIÁTRICO --- */
+        .pedia-banner .slide-cover { background: linear-gradient(145deg, #fff, #ffe3ec); }
+        .pedia-banner .cover-heart svg { filter: drop-shadow(0 0 20px rgba(227, 0, 82, 0.2)); }
+        .pedia-banner .info-list li svg { color: var(--accent-pink); }
+        .pedia-banner .cta-button { background: linear-gradient(45deg, var(--accent-pink), #c90049); color: white; box-shadow: 0 8px 20px rgba(227, 0, 82, 0.3); }
+        .pedia-banner .cta-button:hover { box-shadow: 0 12px 25px rgba(227, 0, 82, 0.4); }
+        .pedia-banner .dot.active { background-color: var(--accent-pink); transform: scale(1.2); }
         
-        .escano-banner .highlight-blue {
-            color: #057dcb;
-            font-weight: 700;
+        /* --- GALERÍA --- */
+        .gallery-section {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+            position: relative;
         }
-        
-        @keyframes escano-fadeIn-slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .gallery-container {
+            overflow: hidden;
+            position: relative;
         }
-        
-        .escano-banner .slide-logos {
-            justify-content: center;
-            padding-top: 0;
-            gap: 40px;
-        }
-        .escano-banner .slide-logos .stacked-logo {
-            max-width: 250px;
-            animation: escano-fadeIn-slideUp 0.8s both;
-        }
-        .escano-banner .slide-logos .stacked-logo:nth-child(1) { animation-delay: 0.2s; }
-        .escano-banner .slide-logos .stacked-logo:nth-child(2) { animation-delay: 0.4s; }
-        
-        .escano-banner .slide-content.slide-background-gray {
-            background-color: #f8f9fa;
-        }
-
-        .escano-banner .slide-content h2 {
-            font-size: 2.5rem; 
-            color: #014d98;
-            margin-bottom: 25px;
-            font-weight: 400;
-            line-height: 1.2;
-        }
-        
-        .escano-banner .slide-content h2 strong {
-            font-weight: 800;
-        }
-
-        .escano-banner .content-body {
-             flex-grow: 1;
-             display: flex;
-             flex-direction: column;
-             justify-content: center;
-             align-items: center;
-             width: 100%;
-        }
-        
-        .escano-banner .info-list {
-            list-style: none;
-            padding-left: 0;
-            text-align: left;
-            width: 100%;
-            columns: 2;
+        .gallery-track {
+            display: flex;
             gap: 20px;
+            transition: transform 0.5s ease;
+            cursor: grab;
         }
-        
-        .escano-banner .info-list li {
-            font-size: 0.95rem; 
-            color: #333;
-            margin-bottom: 12px;
+        .gallery-item {
+            flex: 0 0 300px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 10px;
-            break-inside: avoid-column;
-            font-weight: 400;
-        }
-        
-        .escano-banner .info-list li strong {
-            font-weight: 600;
-        }
-        
-        .escano-banner .info-list li svg {
-            flex-shrink: 0;
-            color: #E30052;
-        }
-
-        .escano-banner .new-service-tag {
-            background-color: #ffc107;
-            color: #333;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 3px 7px;
-            border-radius: 5px;
-            margin-left: 5px;
-        }
-        
-        .escano-banner .slide-content p {
-            font-size: 1.1rem; 
-            color: #333;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-        
-        .escano-banner .slide-content p strong {
-            font-weight: 700;
-            color: #014d98;
-        }
-
-        .escano-banner .cta-button {
-            background: linear-gradient(45deg, #E30052, #c90049);
-            color: white;
-            padding: 16px 35px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 8px 20px rgba(227, 0, 82, 0.3);
-            margin-top: 25px; 
-        }
-
-        .escano-banner .cta-button:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(227, 0, 82, 0.4);
-        }
-        
-        .escano-banner .dot.active {
-            background-color: #014d98;
-            transform: scale(1.2);
-        }
-
-        /* --- ESTILOS BANNER CRÉDITO --- */
-
-        .credit-banner .slide-cover {
-            background: linear-gradient(145deg, rgba(185, 153, 64, 0.78), #ffffff);
-            gap: 25px;
-        }
-
-        .credit-banner .cover-icon {
-            width: 120px;
-            height: 120px;
-            animation: credit-fadeIn-slideUp 0.8s 0.2s both;
-        }
-        
-        .credit-banner .cover-icon svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        .credit-banner .slide-cover h2 {
-            color: #014d98;
-            font-size: 2.8rem; 
-            font-weight: 800;
-            animation: credit-fadeIn-slideUp 0.8s 0.4s both;
-        }
-
-        .credit-banner .slide-cover p {
-            font-size: 1.2rem; 
-            max-width: 90%;
-            color: #333;
-            line-height: 1.7;
-            font-weight: 400;
-            animation: credit-fadeIn-slideUp 0.8s 0.6s both;
-        }
-
-        .credit-banner .slide-cover p strong {
-            font-weight: 700;
-            color: #014d98;
-        }
-        
-        @keyframes credit-fadeIn-slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .credit-banner .slide-content.slide-background-gray {
-            background-color: #f8f9fa;
-        }
-
-        .credit-banner .slide-logos {
             justify-content: center;
-            padding-top: 0;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            z-index: 10;
+        }
+        .gallery-nav.prev { left: -20px; }
+        .gallery-nav.next { right: -20px; }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 50px 0;
+            margin-top: 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
         }
-        .credit-banner .slide-logos .stacked-logo {
-            max-width: 250px;
-            animation: credit-fadeIn-slideUp 0.8s both;
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--white);
         }
-        .credit-banner .slide-logos .stacked-logo:nth-child(1) { animation-delay: 0.2s; }
-        .credit-banner .slide-logos .stacked-logo:nth-child(2) { animation-delay: 0.4s; }
+        
+        .footer-col p, .footer-col a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin-bottom: 10px;
+            display: block;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-col a:hover {
+            color: var(--white);
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+        }
+        
+        .social-links .icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
 
-        .credit-banner .slide-content h2 {
-            font-size: 2.5rem; 
-            color: #014d98;
-            margin-bottom: 25px;
-            font-weight: 400;
-            line-height: 1.2;
-        }
-        
-        .credit-banner .slide-content h2 strong {
-            font-weight: 800;
-        }
-
-        .credit-banner .content-body {
-             flex-grow: 1;
-             display: flex;
-             flex-direction: column;
-             justify-content: center;
-             align-items: center;
-             width: 100%;
-        }
-        
-        .credit-banner .info-list {
-            list-style: none;
-            padding-left: 0;
-            text-align: left;
-            width: 100%;
-            columns: 2;
-            gap: 25px;
-        }
-        
-        .credit-banner .info-list li {
-            font-size: 0.95rem; 
-            color: #333;
-            margin-bottom: 14px;
+        /* --- BOTONES FLOTANTES --- */
+        .floating-action-button {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 12px;
-            break-inside: avoid-column;
-            font-weight: 400;
+            justify-content: center;
+            color: var(--white);
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1010;
+            transition: all 0.3s ease;
+        }
+        .floating-action-button:hover {
+            transform: scale(1.1);
         }
         
-        .credit-banner .info-list li strong {
+        #chatbot-fab {
+            background: var(--primary-blue);
+            bottom: 100px;
+            right: 25px;
+        }
+        #chatbot-fab:hover {
+            background: var(--secondary-blue);
+        }
+
+        #whatsapp-fab {
+            background: var(--whatsapp-green);
+            bottom: 25px;
+            right: 25px;
+        }
+        #whatsapp-fab:hover {
+            background: #128C7E;
+        }
+
+        .chatbot-window {
+            position: fixed;
+            bottom: 175px;
+            right: 25px;
+            width: 90%;
+            max-width: 370px;
+            height: 70vh;
+            max-height: 550px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1009;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .chatbot-window.is-open {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .chatbot-header {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-header h4 {
+            margin: 0;
             font-weight: 600;
         }
-        
-        .credit-banner .info-list li svg {
-            flex-shrink: 0;
-            color: #E30052;
-        }
-        
-        .credit-banner .slide-content p {
-            font-size: 1.1rem; 
-            color: #333;
-            line-height: 1.7;
-            font-weight: 400;
-        }
-        
-        .credit-banner .slide-content p strong {
-            font-weight: 700;
-            color: #014d98;
+
+        .chatbot-close-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
         }
 
-        .credit-banner .cta-button {
-            background: linear-gradient(45deg, #014d98, #057dcb);
-            color: white;
-            padding: 16px 35px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 8px 20px rgba(1, 77, 152, 0.3);
-            margin-top: 30px; 
+        .chatbot-body {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .credit-banner .cta-button:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(1, 77, 152, 0.4);
+        .chat-message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .chat-message.bot {
+            background: var(--light-gray);
+            color: var(--dark-text);
+            border-bottom-left-radius: 4px;
+            align-self: flex-start;
+        }
+
+        .chat-message.user {
+            background: var(--secondary-blue);
+            color: var(--white);
+            border-bottom-right-radius: 4px;
+            align-self: flex-end;
         }
         
-        .credit-banner .dot.active {
-            background-color: #014d98;
-            transform: scale(1.2);
+        .chat-quick-replies {
+            padding: 0 10px 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .quick-reply-btn {
+            background: var(--white);
+            border: 1px solid var(--secondary-blue);
+            color: var(--secondary-blue);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
         }
         
-        /* --- AJUSTES RESPONSIVE --- */
+        .quick-reply-btn:hover {
+            background: var(--secondary-blue);
+            color: var(--white);
+        }
+
+        .chatbot-footer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .chatbot-input {
+            flex-grow: 1;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            background: var(--light-gray);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .chatbot-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--secondary-blue);
+        }
+
+        .chatbot-send-btn {
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            cursor: pointer;
+            padding: 0 15px;
+        }
+        
+        .chatbot-send-btn:hover {
+            color: var(--accent-pink);
+        }
+        
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 992px) {
+            .main-layout {
+                max-width: 100%;
+            }
+            .about-us-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .hero-section h1 { font-size: 2.5rem; }
+            
+            /* --- Mobile Navigation Styles --- */
+            .main-nav { display: none; }
+            .cta-header-btn { display: none; } 
+
+            .mobile-nav-toggle { display: block; }
+            
+            .mobile-nav {
+                display: block;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--white);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+                z-index: 1001;
+                padding: 100px 20px 40px;
+                text-align: center;
+            }
+            
+            .mobile-nav.is-open {
+                right: 0;
+            }
+            
+            .mobile-nav ul {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .mobile-nav a {
+                text-decoration: none;
+                color: var(--primary-blue);
+                font-weight: 600;
+                font-size: 1.2rem;
+                transition: color 0.3s ease;
+            }
+            
+            .mobile-nav a:hover {
+                color: var(--accent-pink);
+            }
+
+            .mobile-nav .cta-header-btn {
+                display: inline-block;
+                margin-top: 30px;
+            }
+
+            /* --- Other Mobile Adjustments --- */
+            .banner-wrapper {
+                max-width: 450px;
+            }
+            .slide-content { min-height: auto; padding: 40px 25px 70px; }
+            .info-list { columns: 1; }
+            .slide-content h2, .slide-cover h2 { font-size: 1.8rem; }
+            .slide-cover p { font-size: 1rem; }
+            
+            .chatbot-window {
+                right: 15px;
+                bottom: 165px;
+            }
+            #chatbot-fab {
+                bottom: 90px;
+                right: 15px;
+            }
+            #whatsapp-fab {
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
         @media (max-width: 480px) {
-            .slide-content {
-                min-height: auto;
-                padding: 40px 25px 70px;
-            }
-            .escano-banner .info-list,
-            .credit-banner .info-list {
-                columns: 1;
-            }
-            .slide-content h2, .slide-cover h2 {
-                font-size: 2rem;
-            }
-             .slide-cover p {
-                font-size: 1.1rem;
-            }
-            .cta-button {
-                font-size: 1.1rem;
-                padding: 16px 35px;
-            }
+             .slide-content h2, .slide-cover h2 { font-size: 1.5rem; }
+             .slide-cover p { font-size: 0.9rem; }
+             .info-list li { font-size: 0.85rem; }
+             .cta-button { font-size: 0.9rem; padding: 12px 25px; }
+             .hero-section h1 { font-size: 2rem; }
+             .hero-section p { font-size: 1rem; }
         }
-        @media (max-width: 380px) {
-            .slide-content h2, .slide-cover h2 {
-                font-size: 1.8rem;
-            }
-             .slide-cover p {
-                font-size: 1rem;
-            }
-            .info-list li {
-                font-size: 0.95rem;
-            }
-        }
+
     </style>
 </head>
 <body>
-    <div id="root"></div>
 
+    <!-- ======== HEADER ======== -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%203.png" alt="Logo Línea Médica" onerror="this.onerror=null;this.src='https://placehold.co/150x50/014d98/FFFFFF?text=Línea+Médica';">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#convenios">Convenios</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+             <a href="https://wa.me/573235957483" target="_blank" class="cta-header-btn">Agendar Cita</a>
+
+             <!-- Botón de menú móvil (hamburguesa) -->
+             <button class="mobile-nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav-container">
+                <i data-feather="menu" class="icon-menu"></i>
+                <i data-feather="x" class="icon-close" style="display:none;"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenedor del menú móvil -->
+    <nav class="mobile-nav" id="mobile-nav-container" aria-hidden="true">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#convenios">Convenios</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="https://wa.me/573235957483" target="_blank" class="cta-header-btn">Agendar Cita</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- ======== HERO SECTION ======== -->
+        <section class="hero-section" id="inicio">
+            <div class="container">
+                <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%201.png" alt="Logo Línea Médica" class="hero-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x120/000000/FFFFFF?text=Logo';">
+                <h1 id="hero-headline">Diagnóstico <span class="highlight">preciso y confiable</span> a tu alcance</h1>
+                <p id="hero-subheadline">Nos especializamos en la realización de ayudas diagnósticas cardiorrespiratorias no invasivas, brindando servicios de alta calidad en cardiología y neumología para la comunidad de Yolombó y el Nordeste antioqueño.</p>
+                <a href="#servicios" class="hero-cta-btn">Conoce Nuestros Servicios</a>
+            </div>
+        </section>
+
+        <!-- ======== SOBRE NOSOTROS SECTION ======== -->
+        <section class="about-us-section" id="sobre-nosotros">
+            <div class="container">
+                <h2>Sobre <span class="highlight">Nosotros</span></h2>
+                <div class="about-us-grid">
+                    <div class="about-us-content">
+                        <h3>Compromiso con la Salud y el Bienestar de la Comunidad</h3>
+                        <p><strong>Línea Médica Yolombó</strong> es una institución dedicada a la salud y el bienestar de la comunidad, brindando atención médica integral, profesional y personalizada. Nuestra misión es ofrecer servicios de salud de alta calidad, combinando tecnología de punta con un equipo humano altamente capacitado.</p>
+                        <p>Desde nuestra fundación, nos hemos guiado por valores fundamentales como el <strong>compromiso, la ética y la excelencia</strong>. Nuestra filosofía se basa en el respeto y la cercanía con los pacientes, promoviendo soluciones médicas que mejoren su calidad de vida.</p>
+                    </div>
+                    <div class="about-us-image">
+                        <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY3017_2.jpg" alt="Doctora en consulta en Línea Médica Yolombó" onerror="this.onerror=null;this.src='https://placehold.co/600x400/eef2f7/333?text=Instalaciones';">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ======== SERVICES SECTION ======== -->
+        <section class="services-section" id="servicios">
+            <div class="container">
+                <h2>Nuestros <span class="highlight">Servicios Especializados</span></h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-card-img-container">
+                             <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/doctor.png" alt="Consulta con Médico General" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Consulta+General';">
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Consulta con Médico General</h3>
+                            <p>Atención médica primaria para el diagnóstico, tratamiento y prevención de enfermedades comunes, enfocada en el bienestar integral del paciente.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20Consulta%20con%20Médico%20General." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-img-container">
+                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/11.jpeg" alt="Imagen de un ecocardiograma" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Ecocardiograma';">
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Ecocardiograma</h3>
+                            <p>Evaluación detallada de la estructura y función del corazón mediante ultrasonido para diagnosticar enfermedades cardíacas de forma no invasiva.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20un%20Ecocardiograma." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-img-container">
+                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/5.jpeg" alt="Paciente con un monitor Holter" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Holter';">
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Holter (24 Horas)</h3>
+                            <p>Registro continuo de la actividad eléctrica del corazón durante 24 horas para detectar arritmias y otras irregularidades del ritmo cardíaco.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20un%20Holter%20de%2024%20horas." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-img-container">
+                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/4.jpeg" alt="Paciente realizando una espirometría" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Espirometría';">
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Espirometría</h3>
+                            <p>Medición precisa de la función pulmonar para diagnosticar y monitorear enfermedades respiratorias como el asma y la EPOC.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20una%20Espirometría." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                        </div>
+                    </div>
+                     <div class="service-card">
+                        <div class="service-card-img-container">
+                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/9.jpeg" alt="Monitor ambulatorio de presión arterial (MAPA)" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=MAPA';">
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Monitoreo de Presión (MAPA)</h3>
+                            <p>Control ambulatorio de la presión arterial durante 24 horas para un diagnóstico preciso de la hipertensión y evaluación del tratamiento.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20un%20Monitoreo%20de%20Presión%20(MAPA)." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======== PARTNERSHIPS SECTION (BANNERS) ======== -->
+        <section class="partnerships-section" id="convenios">
+            <div class="container">
+                <h2>Nuestros <span class="highlight">Convenios</span></h2>
+                <div id="convenios-root"></div>
+            </div>
+        </section>
+
+        <!-- ======== GALLERY SECTION ======== -->
+        <section class="gallery-section" id="galeria">
+            <div class="container">
+                 <h2>Nuestra <span class="highlight">Galería</span></h2>
+                <div class="gallery-container">
+                    <div class="gallery-track">
+                        <!-- Las imágenes se agregarán aquí con JS -->
+                    </div>
+                    <div class="gallery-nav prev"><i data-feather="chevron-left"></i></div>
+                    <div class="gallery-nav next"><i data-feather="chevron-right"></i></div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="main-footer" id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Línea Médica Yolombó</h4>
+                    <p>Cuidando la salud de nuestra gente con calidez y profesionalismo.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61559292910332&mibextid=LQQJ4d" target="_blank"><i data-feather="facebook" class="icon"></i></a>
+                        <a href="https://www.instagram.com/lineamedicayolombo/" target="_blank"><i data-feather="instagram" class="icon"></i></a>
+                        <a href="https://wa.me/573235957483" target="_blank"><i data-feather="message-circle" class="icon"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#sobre-nosotros">Sobre Nosotros</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#convenios">Convenios</a>
+                    <a href="#galeria">Galería</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <p>Calle 20 #20-183, Yolombó, Antioquia</p>
+                    <p>Teléfono: +57 323 595 7483</p>
+                    <p>Email: lineamedicayolombo@gmail.com</p>
+                </div>
+                 <div class="footer-col">
+                    <h4>Horario de Atención</h4>
+                    <p>Lunes a Viernes: 7am - 6pm</p>
+                    <p>Sábados: 8am - 1pm</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Línea Médica Yolombó. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ======== BOTONES FLOTANTES ======== -->
+    <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20solicitar%20más%20información." class="floating-action-button" id="whatsapp-fab" target="_blank" aria-label="Contactar por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    </a>
+    <div class="floating-action-button" id="chatbot-fab" role="button" aria-label="Abrir chat con Asesor Virtual">
+        <i data-feather="message-circle"></i>
+    </div>
+
+    <div class="chatbot-window" id="chatbot-window" role="dialog" aria-modal="true" aria-labelledby="chatbot-title" hidden>
+        <div class="chatbot-header">
+            <h4 id="chatbot-title">Asesor Virtual</h4>
+            <button class="chatbot-close-btn" id="chatbot-close-btn" aria-label="Cerrar chat">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <!-- Los mensajes del chat se agregarán aquí -->
+        </div>
+        <div class="chat-quick-replies" id="chat-quick-replies">
+             <!-- Las respuestas rápidas se agregarán aquí -->
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off">
+            <button class="chatbot-send-btn" id="chatbot-send-btn" aria-label="Enviar mensaje">
+                <i data-feather="send"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Script para el menú móvil y los iconos -->
+    <script>
+        // Activa los iconos de Feather
+        feather.replace();
+
+        // Lógica para el menú móvil (hamburguesa)
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.querySelector('.mobile-nav-toggle');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const iconMenu = toggleBtn.querySelector('.icon-menu');
+            const iconClose = toggleBtn.querySelector('.icon-close');
+
+            if (toggleBtn && mobileNav) {
+                toggleBtn.addEventListener('click', () => {
+                    const isOpen = mobileNav.classList.toggle('is-open');
+                    toggleBtn.setAttribute('aria-expanded', isOpen);
+                    mobileNav.setAttribute('aria-hidden', !isOpen);
+                    
+                    if(isOpen) {
+                        iconMenu.style.display = 'none';
+                        iconClose.style.display = 'block';
+                    } else {
+                        iconMenu.style.display = 'block';
+                        iconClose.style.display = 'none';
+                    }
+                });
+            }
+
+            // Lógica para el desplazamiento suave
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                         // Cierra el menú móvil si está abierto
+                        if (mobileNav.classList.contains('is-open')) {
+                            mobileNav.classList.remove('is-open');
+                            toggleBtn.setAttribute('aria-expanded', 'false');
+                            mobileNav.setAttribute('aria-hidden', 'true');
+                            iconMenu.style.display = 'block';
+                            iconClose.style.display = 'none';
+                        }
+
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- Script para el Chatbot y Títulos Dinámicos -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- LÓGICA DE TÍTULOS DINÁMICOS ---
+            const heroHeadline = document.getElementById('hero-headline');
+            const heroSubheadline = document.getElementById('hero-subheadline');
+
+            const specialDatePhrases = [
+                { date: '07-20', title: '¡Feliz Día de la <span class="highlight">Independencia!</span>', subtitle: 'Hoy celebramos con orgullo nuestra libertad. En Línea Médica, cuidamos el corazón de Colombia.' }
+            ];
+
+            const defaultPhrases = [
+                { title: 'Tu salud, <span class="highlight">nuestra prioridad</span> en Yolombó', subtitle: 'Ofrecemos un servicio de salud integral, humano y de calidad, con acceso a los mejores especialistas y tecnología de punta.' },
+                { title: 'Innovación y <span class="highlight">calidez humana</span> a tu servicio', subtitle: 'Combinamos la última tecnología con un trato cercano y personalizado para cuidar de ti y tu familia.' },
+                { title: 'Diagnósticos precisos, <span class="highlight">cuidado cercano</span>', subtitle: 'Somos especialistas en ayudas diagnósticas cardiorrespiratorias, comprometidos con tu bienestar.' },
+                { title: 'El mejor cuidado para tu <span class="highlight">corazón y pulmones</span>', subtitle: 'En Línea Médica Yolombó, encuentras la experiencia y tecnología que necesitas para respirar tranquilidad.' }
+            ];
+
+            const today = new Date();
+            const todayFormatted = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+            
+            let phrase = specialDatePhrases.find(p => p.date === todayFormatted);
+
+            if (!phrase) {
+                const randomIndex = Math.floor(Math.random() * defaultPhrases.length);
+                phrase = defaultPhrases[randomIndex];
+            }
+
+            heroHeadline.innerHTML = phrase.title;
+            heroSubheadline.innerHTML = phrase.subtitle;
+
+
+            // --- LÓGICA DEL CHATBOT ---
+            const fab = document.getElementById('chatbot-fab');
+            const window = document.getElementById('chatbot-window');
+            const closeBtn = document.getElementById('chatbot-close-btn');
+            const chatBody = document.getElementById('chatbot-body');
+            const input = document.getElementById('chatbot-input');
+            const sendBtn = document.getElementById('chatbot-send-btn');
+            const quickRepliesContainer = document.getElementById('chat-quick-replies');
+
+            const toggleChatbot = () => {
+                const isOpen = window.classList.toggle('is-open');
+                window.hidden = !isOpen;
+                if (isOpen) {
+                    input.focus();
+                }
+            };
+
+            fab.addEventListener('click', () => {
+                toggleChatbot();
+                if (chatBody.children.length === 0) {
+                    setTimeout(() => addBotMessage(getBotResponse('hola')), 500);
+                }
+            });
+            closeBtn.addEventListener('click', toggleChatbot);
+
+            const addMessage = (message, sender) => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('chat-message', sender);
+                messageElement.innerHTML = message;
+                chatBody.appendChild(messageElement);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            };
+            
+            const addBotMessage = (response) => {
+                addMessage(response.text, 'bot');
+                if (response.replies && response.replies.length > 0) {
+                    showQuickReplies(response.replies);
+                }
+            }
+
+            const showQuickReplies = (replies) => {
+                quickRepliesContainer.innerHTML = '';
+                replies.forEach(reply => {
+                    const button = document.createElement('button');
+                    button.classList.add('quick-reply-btn');
+                    button.textContent = reply;
+                    button.addEventListener('click', () => {
+                        handleUserInput(reply);
+                    });
+                    quickRepliesContainer.appendChild(button);
+                });
+            }
+
+            const handleUserInput = (inputText = null) => {
+                const text = inputText || input.value.trim();
+                if (text === '') return;
+
+                addMessage(text, 'user');
+                if (!inputText) input.value = '';
+                quickRepliesContainer.innerHTML = '';
+
+                setTimeout(() => {
+                    const botResponse = getBotResponse(text);
+                    addBotMessage(botResponse);
+                }, 1000);
+            };
+
+            sendBtn.addEventListener('click', () => handleUserInput());
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserInput();
+                }
+            });
+
+            const getBotResponse = (userInput) => {
+                const text = userInput.toLowerCase();
+                
+                if (text.includes('hola') || text.includes('inicio') || text.includes('ayuda')) {
+                    return {
+                        text: '👋 ¡Hola! Bienvenido a LÍNEA MÉDICA Yolombó. Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?',
+                        replies: ['Agendar una cita', 'Nuestros servicios', 'Ubicación y horarios']
+                    };
+                }
+
+                if (text.includes('cita')) {
+                     return {
+                        text: '¡Con gusto te ayudo a agendar tu cita! Para poder orientarte mejor, ¿qué servicio necesitas?',
+                        replies: ['Consulta General', 'Ecocardiograma', 'Holter', 'Espirometría', 'Monitoreo de Presión (MAPA)']
+                    };
+                }
+                
+                if (text.includes('consulta general') || text.includes('ecocardiograma') || text.includes('holter') || text.includes('espirometría') || text.includes('monitoreo')) {
+                    return {
+                        text: `Perfecto. Para agendar tu ${userInput}, por favor contáctanos directamente a nuestro WhatsApp o teléfono para confirmar la disponibilidad de fechas. ¿Puedo ayudarte con algo más?`,
+                        replies: ['Ver otros servicios', 'Horarios', 'Gracias']
+                    };
+                }
+
+                if (text.includes('servicio')) {
+                    return {
+                        text: 'Ofrecemos diagnóstico no invasivo en cardiología y neumología. ¿Sobre qué servicio necesitas más información?',
+                        replies: ['Consulta General', 'Ecocardiograma', 'Holter', 'Espirometría', 'Monitoreo de Presión (MAPA)']
+                    };
+                }
+
+                if (text.includes('ubicación') || text.includes('horario')) {
+                    return {
+                        text: 'Nos encontramos en Calle 20 #20-183, Yolombó, Antioquia. 📍<br>Nuestro horario de atención es de Lunes a Viernes de 7am a 6pm, y Sábados de 8am a 1pm.',
+                        replies: ['Agendar una cita', 'Nuestros servicios']
+                    };
+                }
+                
+                if (text.includes('gracias')) {
+                    return {
+                        text: '¡De nada! Ha sido un placer ayudarte. Si tienes otra pregunta, no dudes en consultarme. 😊',
+                        replies: ['Inicio']
+                    };
+                }
+
+                return {
+                    text: 'No estoy seguro de cómo responder a eso. ¿Puedes intentar con otra pregunta? Aquí tienes algunas opciones:',
+                    replies: ['Agendar una cita', 'Nuestros servicios', 'Ubicación y horarios']
+                };
+            };
+        });
+    </script>
+    
+    <!-- Script para la Galería -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.querySelector('.gallery-track');
+            const prevBtn = document.querySelector('.gallery-nav.prev');
+            const nextBtn = document.querySelector('.gallery-nav.next');
+
+            const images = [
+                '_SNY2820.jpg', '_SNY2821.jpg', '_SNY2825_1.jpg', '_SNY2832.jpg', 
+                '_SNY2836.jpg', '_SNY2837_1.jpg', '_SNY2839.jpg', '_SNY2840.jpg', 
+                '_SNY2841.jpg', '_SNY2842.jpg', '_SNY2850.jpg', '_SNY2853.jpg', 
+                '_SNY2854.jpg', '_SNY2856.jpg', '_SNY2858.jpg', '_SNY2859.jpg',
+                '_SNY2860.jpg', '_SNY2861.jpg', '_SNY2862.jpg', '_SNY2863.jpg',
+                '_SNY2864.jpg', '_SNY2865.jpg', '_SNY2866.jpg'
+            ];
+
+            const baseUrl = 'https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/';
+
+            images.forEach(imgName => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item';
+                const img = document.createElement('img');
+                img.src = baseUrl + imgName;
+                img.alt = 'Imagen de la galería de Línea Médica';
+                img.onerror = () => { img.src = `https://placehold.co/300x220/eef2f7/333?text=Imagen+no+disponible`; };
+                item.appendChild(img);
+                track.appendChild(item);
+            });
+            
+            let currentIndex = 0;
+            const itemWidth = 320; // 300px width + 20px gap
+
+            const updateGalleryPosition = () => {
+                track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+            };
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < images.length - 1) {
+                    currentIndex++;
+                    updateGalleryPosition();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateGalleryPosition();
+                }
+            });
+
+            // Drag to scroll functionality
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            track.addEventListener('mousedown', (e) => {
+                isDown = true;
+                track.classList.add('active');
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = track.scrollLeft;
+            });
+            track.addEventListener('mouseleave', () => {
+                isDown = false;
+                track.classList.remove('active');
+            });
+            track.addEventListener('mouseup', () => {
+                isDown = false;
+                track.classList.remove('active');
+            });
+            track.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 2; //scroll-fast
+                track.scrollLeft = scrollLeft - walk;
+            });
+        });
+    </script>
+
+    <!-- Script de React para los banners -->
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
         
-        // --- DATOS PARA BANNER ESCANO ---
+        // --- DATOS DE LOS BANNERS ---
         const slidesDataEscano = [
-            {
-                id: 0,
-                title: "¿Necesitas algún estudio médico?",
-                content_type: "cover",
-                text: "Con el convenio <strong>Línea Médica</strong> y <strong>ESCANO</strong> te ofrecemos <strong>beneficios exclusivos</strong>."
-            },
-            { 
-                id: 1,
-                title: "<strong>Nuestros</strong> <span class='highlight-blue'>Servicios</span>",
-                content_type: "list",
-                items: [
-                    { name: "<strong>Resonancia</strong> magnética", isNew: false },
-                    { name: "<strong>Ecografía</strong>", isNew: false },
-                    { name: "<strong>Tomografía</strong>", isNew: false },
-                    { name: "<strong>Densitometría</strong> ósea", isNew: false },
-                    { name: "<strong>Mamografía</strong>", isNew: false },
-                    { name: "<strong>Rayos X</strong>", isNew: false },
-                    { name: "<strong>Chequeos</strong> preventivos", isNew: true },
-                    { name: "<strong>Electrocardiograma</strong>", isNew: false },
-                    { name: "<strong>Consulta</strong> médica", isNew: true },
-                ]
-            },
-            { 
-                id: 2,
-                title: "<strong>Beneficios</strong> <span class='highlight-blue'>Exclusivos</span>",
-                content_type: "list",
-                items: [
-                    { name: "Citas en <strong>máximo 2 días</strong> hábiles", isNew: false },
-                    { name: "Entrega de <strong>resultados rápidos</strong>", isNew: false },
-                    { name: "<strong>Descuentos</strong> especiales", isNew: false },
-                    { name: "Atención con <strong>calidez humana</strong>", isNew: false },
-                    { name: "<strong>Seguimiento</strong> personalizado", isNew: false },
-                    { name: "<strong>Envío de resultados</strong> a tu médico", isNew: false },
-                ]
-            },
-            { 
-                id: 3,
-                title: "<strong>Confianza</strong> y <span class='highlight-blue'>Experiencia</span>",
-                content_type: "paragraph",
-                text: "Con más de <strong>40 años de experiencia</strong>, ESCANO es especialista en ayudas diagnósticas. En <strong>Línea Médica</strong> y <strong>ESCANO</strong> estamos comprometidos con tu <strong>bienestar</strong>. ¡Tu salud es lo más importante!"
-            },
-            {
-                id: 4,
-                content_type: "logos",
-            }
+            { id: 0, title: "¿Necesitas algún estudio médico?", content_type: "cover", text: "Con el convenio <strong>Línea Médica</strong> y <strong>ESCANO</strong> te ofrecemos <strong>beneficios exclusivos</strong>." },
+            { id: 1, title: "<strong>Nuestros</strong> <span class='highlight-blue'>Servicios</span>", content_type: "list", items: [ { name: "<strong>Resonancia</strong> magnética", isNew: false }, { name: "<strong>Ecografía</strong>", isNew: false }, { name: "<strong>Tomografía</strong>", isNew: false }, { name: "<strong>Densitometría</strong> ósea", isNew: false }, { name: "<strong>Mamografía</strong>", isNew: false }, { name: "<strong>Rayos X</strong>", isNew: false }, { name: "<strong>Chequeos</strong> preventivos", isNew: true }, { name: "<strong>Electrocardiograma</strong>", isNew: false }, { name: "<strong>Consulta</strong> médica", isNew: true }, ] },
+            { id: 2, title: "<strong>Beneficios</strong> <span class='highlight-blue'>Exclusivos</span>", content_type: "list", items: [ { name: "Citas en <strong>máximo 2 días</strong> hábiles", isNew: false }, { name: "Entrega de <strong>resultados rápidos</strong>", isNew: false }, { name: "<strong>Descuentos</strong> especiales", isNew: false }, { name: "Atención con <strong>calidez humana</strong>", isNew: false }, { name: "<strong>Seguimiento</strong> personalizado", isNew: false }, { name: "<strong>Envío de resultados</strong> a tu médico", isNew: false }, ] },
+            { id: 3, title: "<strong>Confianza</strong> y <span class='highlight-blue'>Experiencia</span>", content_type: "paragraph", text: "Con más de <strong>40 años de experiencia</strong>, ESCANO es especialista en ayudas diagnósticas. En <strong>Línea Médica</strong> y <strong>ESCANO</strong> estamos comprometidos con tu <strong>bienestar</strong>. ¡Tu salud es lo más importante!" },
+            { id: 4, content_type: "logos" }
         ];
 
-        // --- DATOS PARA BANNER CRÉDITO ---
         const slidesDataCredit = [
-            {
-                id: 0,
-                title: "Financia tu Bienestar",
-                content_type: "cover",
-                text: "Créditos <strong>rápidos</strong> y <strong>fáciles</strong> a través de <strong>MD Capital</strong>."
-            },
-            { 
-                id: 1,
-                title: "<strong>Beneficios</strong> de tu Crédito",
-                content_type: "list",
-                items: [
-                    { name: "Proceso <strong>100% digital</strong>" },
-                    { name: "<strong>Fácil y Rápido</strong>, sin papeleos" },
-                    { name: "<strong>Aprobación</strong> en minutos" },
-                    { name: "Paga a tu ritmo y <strong>sin codeudor</strong>" },
-                    { name: "Múltiples <strong>opciones de pago</strong>" },
-                    { name: "Totalmente <strong>confiable y seguro</strong>" },
-                ]
-            },
-            { 
-                id: 2,
-                title: "¿Cómo <strong>Funciona</strong>?",
-                content_type: "list",
-                items: [
-                    { name: "<strong>1. Solicita</strong> tu crédito en línea." },
-                    { name: "<strong>2. Recibe</strong> aprobación inmediata." },
-                    { name: "<strong>3. Usa</strong> tu crédito para tus servicios." },
-                    { name: "<strong>4. Paga</strong> tus cuotas fácilmente." },
-                ]
-            },
-            { 
-                id: 3,
-                title: "No pongas en <strong>pausa tu salud</strong>",
-                content_type: "paragraph",
-                text: "Accede a un crédito <strong>fácil y rápido</strong>, sin preocuparte por el costo. ¡Tu bienestar es nuestra prioridad!"
-            },
-            {
-                id: 4,
-                title: "Solicita tu <strong>Crédito Ahora</strong>",
-                content_type: "cta",
-                text: "Estás a un solo clic de obtener la financiación que necesitas para cuidar de tu salud.",
-                cta_link: "https://app.mdcapital.com.co/self-credit"
-            },
-            {
-                id: 5,
-                content_type: "logos",
-            }
+            { id: 0, title: "Financia tu Bienestar", content_type: "cover", text: "Créditos <strong>rápidos</strong> y <strong>fáciles</strong> a través de <strong>MD Capital</strong>." },
+            { id: 1, title: "<strong>Beneficios</strong> de tu Crédito", content_type: "list", items: [ { name: "Proceso <strong>100% digital</strong>" }, { name: "<strong>Fácil y Rápido</strong>, sin papeleos" }, { name: "<strong>Aprobación</strong> en minutos" }, { name: "Paga a tu ritmo y <strong>sin codeudor</strong>" }, { name: "Múltiples <strong>opciones de pago</strong>" }, { name: "Totalmente <strong>confiable y seguro</strong>" }, ] },
+            { id: 2, title: "¿Cómo <strong>Funciona</strong>?", content_type: "list", items: [ { name: "<strong>1. Solicita</strong> tu crédito en línea." }, { name: "<strong>2. Recibe</strong> aprobación inmediata." }, { name: "<strong>3. Usa</strong> tu crédito para tus servicios." }, { name: "<strong>4. Paga</strong> tus cuotas fácilmente." }, ] },
+            { id: 3, title: "No pongas en <strong>pausa tu salud</strong>", content_type: "paragraph", text: "Accede a un crédito <strong>fácil y rápido</strong>, sin preocuparte por el costo. ¡Tu bienestar es nuestra prioridad!" },
+            { id: 4, title: "Solicita tu <strong>Crédito Ahora</strong>", content_type: "cta", text: "Estás a un solo clic de obtener la financiación que necesitas para cuidar de tu salud.", cta_link: "https://app.mdcapital.com.co/self-credit" },
+            { id: 5, content_type: "logos" }
         ];
 
-        const CheckIcon = () => (
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-            </svg>
-        );
+        const slidesDataPedia = [
+            { id: 0, title: "Cardiología Pediátrica", content_type: "cover", text: "Porque cada pequeño corazón merece lo mejor. <strong>Tu tranquilidad es nuestra prioridad.</strong>" },
+            { id: 1, title: "Servicios Pediátricos", content_type: "list", items: [ { name: "Consulta Pediátrica" }, { name: "Ecocardiograma Pediátrico" }, { name: "Holter 24 Horas" }, { name: "Espirometría Pediátrica" }, { name: "MAPA 24 Horas" } ] },
+            { id: 2, title: "Cuidado Especializado", content_type: "paragraph", text: "Ofrecemos un diagnóstico preciso y un enfoque humano para el cuidado cardiovascular de los más pequeños. ¡Agenda una cita y dale a tus hijos la atención que merecen!" },
+             { id: 3, title: "Beneficios para los Pequeños", content_type: "list", items: [ { name: "Atención cálida y amigable" }, { name: "Equipos adaptados para niños" }, { name: "Resultados rápidos y confiables" }, { name: "Comunicación directa con tu pediatra" } ] },
+        ];
 
-        const EscanoBanner = () => {
+        // --- HOOK PERSONALIZADO PARA LA LÓGICA DEL SLIDESHOW ---
+        const useSlideshow = (slideCount, interval) => {
             const [currentSlide, setCurrentSlide] = useState(0);
             const timeoutRef = useRef(null);
 
             const resetTimeout = () => {
                 if (timeoutRef.current) clearTimeout(timeoutRef.current);
-            }
+            };
 
             useEffect(() => {
                 resetTimeout();
                 timeoutRef.current = setTimeout(
-                    () => setCurrentSlide((prev) => (prev + 1) % slidesDataEscano.length),
-                    6000
+                    () => setCurrentSlide((prev) => (prev + 1) % slideCount),
+                    interval
                 );
                 return () => resetTimeout();
-            }, [currentSlide]);
-            
-            const handleDotClick = (index) => {
+            }, [currentSlide, slideCount, interval]);
+
+            const goToSlide = (index) => {
                 setCurrentSlide(index);
-            }
+            };
+
+            return [currentSlide, goToSlide];
+        };
+
+        // --- FUNCIÓN DE AYUDA PARA MANEJAR ERRORES DE IMAGEN ---
+        const handleImageError = (e, logoName) => {
+            const placeholderText = logoName.replace(' ', '+');
+            e.target.src = `https://placehold.co/250x80/e0e7ff/333?text=${placeholderText}`;
+            e.target.onerror = null;
+        };
+
+        // --- COMPONENTES DE LOS BANNERS ---
+        const EscanoBanner = () => {
+            const [currentSlide, goToSlide] = useSlideshow(slidesDataEscano.length, 8500);
 
             return (
                 <div className="banner-container escano-banner">
-                    <div className="slides-viewport">
+                    <div className="slides-viewport" aria-live="polite">
                         <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
                             {slidesDataEscano.map((slide, index) => {
                                 if (slide.content_type === 'cover') {
                                     return (
-                                        <div className="slide-content slide-cover" key={slide.id}>
-                                            <div className="cover-heart">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#E30052" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                                    <path d="M32 58 C12 42 4 28 12 18 C18 10 28 12 32 20 C36 12 46 10 52 18 C60 28 52 42 32 58" />
-                                                    <path d="M12 32 L20 32 L24 38 L30 24 L34 40 L40 28 L52 28">
-                                                        <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite" />
-                                                        <animate attributeName="stroke-dashoffset" values="100;0" dur="2.5s" repeatCount="indefinite" />
-                                                    </path>
-                                                </svg>
+                                        <div className="slide-content slide-cover" key={slide.id} role="tabpanel">
+                                            <div className="cover-icon-wrapper">
+                                                <div className="cover-heart">
+                                                    <svg role="img" aria-labelledby="escano-heart-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#E30052" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                        <title id="escano-heart-title">Corazón con línea de electrocardiograma</title>
+                                                        <path d="M32 58 C12 42 4 28 12 18 C18 10 28 12 32 20 C36 12 46 10 52 18 C60 28 52 42 32 58" />
+                                                        <path d="M12 32 L20 32 L24 38 L30 24 L34 40 L40 28 L52 28">
+                                                            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite" />
+                                                            <animate attributeName="stroke-dashoffset" values="100;0" dur="2.5s" repeatCount="indefinite" />
+                                                        </path>
+                                                    </svg>
+                                                </div>
                                             </div>
                                             <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
                                             <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
@@ -600,21 +1464,21 @@
                                 }
                                 if (slide.content_type === 'logos') {
                                     return (
-                                        <div className="slide-content slide-logos" key={slide.id}>
-                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/LOGO%203.png" alt="Logo Línea Médica" className="stacked-logo" onError={(e) => { e.target.style.display='none'; }} />
-                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20escano.png" alt="Logo Escano" className="stacked-logo" onError={(e) => { e.target.style.display='none'; }}/>
+                                        <div className="slide-content slide-logos" key={slide.id} role="tabpanel">
+                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%203.png" alt="Logo Línea Médica" className="stacked-logo" onError={(e) => handleImageError(e, 'Línea Médica')} />
+                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20escano.png" alt="Logo Escano" className="stacked-logo" onError={(e) => handleImageError(e, 'Escano')} />
                                         </div>
                                     )
                                 }
                                 return (
-                                    <div className={`slide-content ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id}>
+                                    <div className={`slide-content ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id} role="tabpanel">
                                         <div className="content-body">
                                             <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
                                             {slide.content_type === 'list' ? (
                                                 <ul className="info-list">
                                                     {slide.items.map(item => (
                                                         <li key={item.name} dangerouslySetInnerHTML={{ __html: `
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E30052">
+                                                            <svg role="img" aria-label="Checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E30052">
                                                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                                             </svg>
                                                             <span>
@@ -637,10 +1501,9 @@
                             })}
                         </div>
                     </div>
-                    
-                    <div className="pagination-dots">
+                    <div className="pagination-dots" role="tablist">
                         {slidesDataEscano.map((_, index) => (
-                            <div key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => handleDotClick(index)}></div>
+                            <button key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={`Ir a la diapositiva ${index + 1}`} aria-selected={currentSlide === index} role="tab"></button>
                         ))}
                     </div>
                 </div>
@@ -648,38 +1511,23 @@
         };
 
         const CreditBanner = () => {
-            const [currentSlide, setCurrentSlide] = useState(0);
-            const timeoutRef = useRef(null);
-
-            const resetTimeout = () => {
-                if (timeoutRef.current) clearTimeout(timeoutRef.current);
-            }
-
-            useEffect(() => {
-                resetTimeout();
-                timeoutRef.current = setTimeout(
-                    () => setCurrentSlide((prev) => (prev + 1) % slidesDataCredit.length),
-                    7000
-                );
-                return () => resetTimeout();
-            }, [currentSlide]);
-            
-            const handleDotClick = (index) => {
-                setCurrentSlide(index);
-            }
+            const [currentSlide, goToSlide] = useSlideshow(slidesDataCredit.length, 8500);
 
             return (
                 <div className="banner-container credit-banner">
-                    <div className="slides-viewport">
+                    <div className="slides-viewport" aria-live="polite">
                         <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
                             {slidesDataCredit.map((slide, index) => {
                                 if (slide.content_type === 'cover') {
                                     return (
-                                        <div className="slide-content slide-cover" key={slide.id}>
-                                            <div className="cover-icon">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#014d98">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75v10.5A2.25 2.25 0 004.5 19.5z" />
-                                                </svg>
+                                        <div className="slide-content slide-cover" key={slide.id} role="tabpanel">
+                                            <div className="cover-icon-wrapper">
+                                                <div className="cover-icon">
+                                                    <svg role="img" aria-labelledby="credit-card-title" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#014d98">
+                                                        <title id="credit-card-title">Ícono de tarjeta de crédito</title>
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75v10.5A2.25 2.25 0 004.5 19.5z" />
+                                                    </svg>
+                                                </div>
                                             </div>
                                             <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
                                             <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
@@ -688,21 +1536,21 @@
                                 }
                                 if (slide.content_type === 'logos') {
                                     return (
-                                        <div className="slide-content slide-logos" key={slide.id}>
-                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/LOGO%203.png" alt="Logo Línea Médica" className="stacked-logo" onError={(e) => { e.target.style.display='none'; }} />
-                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20MD.png" alt="Logo MD Capital" className="stacked-logo" onError={(e) => { e.target.style.display='none'; }}/>
+                                        <div className="slide-content slide-logos" key={slide.id} role="tabpanel">
+                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%203.png" alt="Logo Línea Médica" className="stacked-logo" onError={(e) => handleImageError(e, 'Línea Médica')} />
+                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20MD.png" alt="Logo MD Capital" className="stacked-logo" onError={(e) => handleImageError(e, 'MD Capital')}/>
                                         </div>
                                     )
                                 }
                                 return (
-                                    <div className={`slide-content ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id}>
+                                    <div className={`slide-content ${slide.content_type === 'cta' ? 'slide-cta' : ''} ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id} role="tabpanel">
                                         <div className="content-body">
                                             <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
                                             {slide.content_type === 'list' ? (
                                                 <ul className="info-list">
                                                     {slide.items.map(item => (
                                                         <li key={item.name}>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#014d98">
+                                                            <svg role="img" aria-label="Checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#014d98">
                                                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                                             </svg>
                                                             <span dangerouslySetInnerHTML={{ __html: item.name }}></span>
@@ -713,27 +1561,80 @@
                                                 <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
                                             )}
                                         </div>
-                                        {slide.content_type === 'cta' ? (
-                                            <>
-                                                <a href={slide.cta_link} target="_blank" rel="noopener noreferrer" className="cta-button">
-                                                    <span>Solicita tu Crédito</span>
-                                                </a>
-                                            </>
-                                        ) : null}
+                                        {slide.content_type === 'cta' && (
+                                            <a href={slide.cta_link} target="_blank" rel="noopener noreferrer" className="cta-button">
+                                                <span>Solicita tu Crédito</span>
+                                            </a>
+                                        )}
                                     </div>
                                 )
                             })}
                         </div>
                     </div>
-                    
-                    <div className="pagination-dots">
+                    <div className="pagination-dots" role="tablist">
                         {slidesDataCredit.map((_, index) => (
-                            <div key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => handleDotClick(index)}></div>
+                            <button key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={`Ir a la diapositiva ${index + 1}`} aria-selected={currentSlide === index} role="tab"></button>
                         ))}
                     </div>
                 </div>
             );
-        }
+        };
+
+        const PediaBanner = () => {
+            const [currentSlide, goToSlide] = useSlideshow(slidesDataPedia.length, 8500);
+
+            return (
+                <div className="banner-container pedia-banner">
+                    <div className="slides-viewport" aria-live="polite">
+                        <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                            {slidesDataPedia.map((slide, index) => (
+                                <div className={`slide-content ${slide.content_type === 'cover' ? 'slide-cover' : ''}`} key={slide.id} role="tabpanel">
+                                    <div className="content-body">
+                                        {slide.content_type === 'cover' && (
+                                            <div className="cover-icon-wrapper">
+                                                <div className="cover-heart">
+                                                    <svg role="img" aria-labelledby="pedia-heart-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#E30052" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                                                        <title id="pedia-heart-title">Corazón con línea de electrocardiograma</title>
+                                                        <path d="M32 58 C12 42 4 28 12 18 C18 10 28 12 32 20 C36 12 46 10 52 18 C60 28 52 42 32 58" />
+                                                        <path d="M12 32 L20 32 L24 38 L30 24 L34 40 L40 28 L52 28">
+                                                            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite" />
+                                                            <animate attributeName="stroke-dashoffset" values="100;0" dur="2.5s" repeatCount="indefinite" />
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        )}
+                                        <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
+                                        {slide.content_type === 'list' ? (
+                                            <ul className="info-list">
+                                                {slide.items.map(item => (
+                                                    <li key={item.name}>
+                                                        <svg role="img" aria-label="Checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E30052">
+                                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                                        </svg>
+                                                        <span dangerouslySetInnerHTML={{ __html: item.name }}></span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
+                                        )}
+                                    </div>
+                                    <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20de%20Cardiología%20Pediátrica." target="_blank" rel="noopener noreferrer" className="cta-button">
+                                        <span>Agendar Cita Pediátrica</span>
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="pagination-dots" role="tablist">
+                        {slidesDataPedia.map((_, index) => (
+                            <button key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={`Ir a la diapositiva ${index + 1}`} aria-selected={currentSlide === index} role="tab"></button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
 
         const App = () => {
             return (
@@ -744,11 +1645,14 @@
                     <div className="banner-wrapper">
                         <CreditBanner />
                     </div>
+                    <div className="banner-wrapper">
+                        <PediaBanner />
+                    </div>
                 </div>
             )
         }
 
-        const container = document.getElementById('root');
+        const container = document.getElementById('convenios-root');
         const root = ReactDOM.createRoot(container);
         root.render(<App />);
     </script>
