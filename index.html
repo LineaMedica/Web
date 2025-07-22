@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <!-- Babel para transpilar JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -175,14 +175,14 @@
             background-image: linear-gradient(rgba(238, 242, 247, 0.8), rgba(216, 226, 239, 0.8)), url('https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY2866.jpg');
             background-size: cover;
             background-position: center;
-            padding: 100px 0;
+            padding: 80px 0; /* Adjusted padding for mobile */
             text-align: center;
             color: var(--dark-text);
         }
 
         .hero-logo {
-            width: 300px;
-            margin: 0 auto 30px;
+            width: 250px; /* Adjusted size for mobile */
+            margin: 0 auto 20px;
         }
 
         .hero-section h1 {
@@ -191,11 +191,12 @@
             line-height: 1.2;
             margin-bottom: 20px;
             color: var(--primary-blue);
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
         }
         
         .hero-section h1 .highlight {
             color: var(--secondary-blue);
+            transition: opacity 0.5s ease-in-out;
         }
 
         .hero-section p {
@@ -203,7 +204,6 @@
             max-width: 700px;
             margin: 0 auto 30px;
             color: #555;
-            transition: opacity 1s ease-in-out;
         }
         
         .hero-cta-btn {
@@ -216,6 +216,7 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px var(--shadow-color);
+            white-space: nowrap; /* Prevent button text from wrapping */
         }
         
         .hero-cta-btn:hover {
@@ -258,7 +259,7 @@
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
         
@@ -773,6 +774,7 @@
         @media (max-width: 768px) {
             h2 { font-size: 2rem; }
             .hero-section h1 { font-size: 2.5rem; }
+            .hero-section p { font-size: 1.1rem; }
             
             /* --- Mobile Navigation Styles --- */
             .main-nav { display: none; }
@@ -833,27 +835,31 @@
             .slide-content h2, .slide-cover h2 { font-size: 1.8rem; }
             .slide-cover p { font-size: 1rem; }
             
+            /* RESPONSIVE FIX: Adjust FAB and Chatbot window positioning */
             .chatbot-window {
                 right: 15px;
-                bottom: 165px;
+                bottom: 175px;
             }
             #chatbot-fab {
-                bottom: 90px;
+                bottom: 100px;
                 right: 15px;
             }
             #whatsapp-fab {
-                bottom: 15px;
+                bottom: 25px;
                 right: 15px;
             }
         }
         
         @media (max-width: 480px) {
-             .slide-content h2, .slide-cover h2 { font-size: 1.5rem; }
-             .slide-cover p { font-size: 0.9rem; }
-             .info-list li { font-size: 0.85rem; }
-             .cta-button { font-size: 0.9rem; padding: 12px 25px; }
-             .hero-section h1 { font-size: 2rem; }
-             .hero-section p { font-size: 1rem; }
+            .hero-logo { width: 200px; }
+            .hero-section h1 { font-size: 2rem; line-height: 1.3; }
+            .hero-section p { font-size: 1rem; }
+            .hero-cta-btn { font-size: 1rem; padding: 12px 25px; }
+            
+            .slide-content h2, .slide-cover h2 { font-size: 1.5rem; }
+            .slide-cover p { font-size: 0.9rem; }
+            .info-list li { font-size: 0.85rem; }
+            .cta-button { font-size: 0.9rem; padding: 12px 25px; }
         }
 
     </style>
@@ -878,11 +884,11 @@
             </nav>
              <a href="https://wa.me/573235957483" target="_blank" class="cta-header-btn">Agendar Cita</a>
 
-             <!-- Botón de menú móvil (hamburguesa) -->
-             <button class="mobile-nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav-container">
-                <i data-feather="menu" class="icon-menu"></i>
-                <i data-feather="x" class="icon-close" style="display:none;"></i>
-            </button>
+              <!-- Botón de menú móvil (hamburguesa) -->
+              <button class="mobile-nav-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-nav-container">
+                  <i data-feather="menu" class="icon-menu"></i>
+                  <i data-feather="x" class="icon-close" style="display:none;"></i>
+              </button>
         </div>
     </header>
 
@@ -903,7 +909,7 @@
         <!-- ======== HERO SECTION ======== -->
         <section class="hero-section" id="inicio">
             <div class="container">
-                <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%201.png" alt="Logo Línea Médica" class="hero-logo" onerror="this.onerror=null;this.src='https://placehold.co/120x120/000000/FFFFFF?text=Logo';">
+                <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%201.png" alt="Logo Línea Médica" class="hero-logo" onerror="this.onerror=null;this.src='https://placehold.co/300x100/000000/FFFFFF?text=Logo';">
                 <h1 id="hero-headline">Diagnóstico <span class="highlight">preciso y confiable</span> a tu alcance</h1>
                 <p id="hero-subheadline">Nos especializamos en la realización de ayudas diagnósticas cardiorrespiratorias no invasivas, brindando servicios de alta calidad en cardiología y neumología para la comunidad de Yolombó y el Nordeste antioqueño.</p>
                 <a href="#servicios" class="hero-cta-btn">Conoce Nuestros Servicios</a>
@@ -932,82 +938,94 @@
             <div class="container">
                 <h2>Nuestros <span class="highlight">Servicios Especializados</span></h2>
                 <div class="services-grid">
+                    <!-- Tarjeta de Servicio 1: Electrocardiograma -->
                     <div class="service-card">
                         <div class="service-card-img-container">
-                             <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/doctor.png" alt="Consulta con Médico General" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Consulta+General';">
+                             <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/electrocardiograma.jpg" alt="Electrocardiograma" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=ECG';">
                         </div>
                         <div class="service-card-content">
-                            <h3>Consulta con Médico General</h3>
-                            <p>Atención médica primaria para el diagnóstico, tratamiento y prevención de enfermedades comunes, enfocada en el bienestar integral del paciente.</p>
-                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20Consulta%20con%20Médico%20General." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                            <h3>Electrocardiograma (ECG)</h3>
+                            <p>Registro de la actividad eléctrica del corazón para detectar arritmias, isquemias y otras patologías cardíacas de forma rápida y no invasiva.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20un%20Electrocardiograma." target="_blank" class="service-cta-btn">Agendar Ahora</a>
                         </div>
                     </div>
+                    <!-- Tarjeta de Servicio 2: Monitoreo Holter -->
                     <div class="service-card">
                         <div class="service-card-img-container">
-                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/Ecocardiograma.png" alt="Imagen de un ecocardiograma" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Ecocardiograma';">
+                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/holter.jpg" alt="Monitoreo Holter" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Holter';">
                         </div>
                         <div class="service-card-content">
-                            <h3>Ecocardiograma</h3>
-                            <p>Evaluación detallada de la estructura y función del corazón mediante ultrasonido para diagnosticar enfermedades cardíacas de forma no invasiva.</p>
-                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20un%20Ecocardiograma." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                            <h3>Monitoreo Holter 24h</h3>
+                            <p>Estudio continuo del ritmo cardíaco durante 24 horas para diagnosticar arritmias intermitentes y evaluar la eficacia de tratamientos.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20información%20sobre%20el%20Monitoreo%20Holter." target="_blank" class="service-cta-btn">Saber Más</a>
                         </div>
                     </div>
+                    <!-- Tarjeta de Servicio 3: MAPA -->
                     <div class="service-card">
                         <div class="service-card-img-container">
-                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/ELECTROCARDIOGRAF 24 HORAS.png" alt="Paciente con un monitor Holter" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Holter';">
+                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/mapa.jpg" alt="Monitoreo Ambulatorio de Presión Arterial" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=MAPA';">
                         </div>
                         <div class="service-card-content">
-                            <h3>Holter (24 Horas)</h3>
-                            <p>Registro continuo de la actividad eléctrica del corazón durante 24 horas para detectar arritmias y otras irregularidades del ritmo cardíaco.</p>
-                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20un%20Holter%20de%2024%20horas." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                            <h3>MAPA (Presión Arterial)</h3>
+                            <p>Monitoreo ambulatorio de la presión arterial durante 24 horas para un diagnóstico preciso de la hipertensión y su control.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20información%20sobre%20el%20estudio%20MAPA." target="_blank" class="service-cta-btn">Saber Más</a>
                         </div>
                     </div>
+                     <!-- Tarjeta de Servicio 4: Espirometría -->
                     <div class="service-card">
                         <div class="service-card-img-container">
-                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/SPIROMETRiA.png" alt="Paciente realizando una espirometría" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Espirometría';">
+                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/espirometria.jpg" alt="Espirometría" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Espirometría';">
                         </div>
                         <div class="service-card-content">
                             <h3>Espirometría</h3>
-                            <p>Medición precisa de la función pulmonar para diagnosticar y monitorear enfermedades respiratorias como el asma y la EPOC.</p>
-                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20una%20Espirometría." target="_blank" class="service-cta-btn">Agendar Cita</a>
-                        </div>
-                    </div>
-                     <div class="service-card">
-                        <div class="service-card-img-container">
-                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/MAP.png" alt="Monitor ambulatorio de presión arterial (MAPA)" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=MAPA';">
-                        </div>
-                        <div class="service-card-content">
-                            <h3>Monitoreo de Presión (MAPA)</h3>
-                            <p>Control ambulatorio de la presión arterial durante 24 horas para un diagnóstico preciso de la hipertensión y evaluación del tratamiento.</p>
-                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20un%20Monitoreo%20de%20Presión%20(MAPA)." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                            <p>Prueba de función pulmonar que mide la capacidad y volúmenes de los pulmones. Esencial para el diagnóstico de asma, EPOC y otras enfermedades respiratorias.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20Espirometría." target="_blank" class="service-cta-btn">Agendar Ahora</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ======== PARTNERSHIPS SECTION (BANNERS) ======== -->
+        <!-- ======== PARTNERSHIPS SECTION ======== -->
         <section class="partnerships-section" id="convenios">
             <div class="container">
-                <h2>Nuestros <span class="highlight">Convenios</span></h2>
-                <div id="convenios-root"></div>
-            </div>
-        </section>
-
-        <!-- ======== GALLERY SECTION ======== -->
-        <section class="gallery-section" id="galeria">
-            <div class="container">
-                 <h2>Nuestra <span class="highlight">Galería</span></h2>
-                <div class="gallery-container">
-                    <div class="gallery-track">
-                        <!-- Las imágenes se agregarán aquí con JS -->
+                 <h2>Nuestros <span class="highlight">Convenios</span></h2>
+                 <div class="main-layout">
+                    <!-- Contenedor para el banner de Escanografía -->
+                    <div class="banner-wrapper">
+                        <div id="escano-banner-container" class="banner-container escano-banner"></div>
                     </div>
-                    <div class="gallery-nav prev"><i data-feather="chevron-left"></i></div>
-                    <div class="gallery-nav next"><i data-feather="chevron-right"></i></div>
+                    <!-- Contenedor para el banner de Crédito -->
+                    <div class="banner-wrapper">
+                        <div id="credit-banner-container" class="banner-container credit-banner"></div>
+                    </div>
+                    <!-- Contenedor para el banner de Pediatría -->
+                    <div class="banner-wrapper">
+                        <div id="pedia-banner-container" class="banner-container pedia-banner"></div>
+                    </div>
                 </div>
             </div>
         </section>
         
+        <!-- ======== GALLERY SECTION ======== -->
+        <section class="gallery-section" id="galeria">
+            <div class="container">
+                <h2>Nuestras <span class="highlight">Instalaciones</span></h2>
+                <div class="gallery-container">
+                    <div class="gallery-track">
+                        <div class="gallery-item"><img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY2866.jpg" alt="Instalaciones 1" onerror="this.onerror=null;this.src='https://placehold.co/300x220/ccc/333?text=Galería+1';"></div>
+                        <div class="gallery-item"><img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY2910.jpg" alt="Instalaciones 2" onerror="this.onerror=null;this.src='https://placehold.co/300x220/ccc/333?text=Galería+2';"></div>
+                        <div class="gallery-item"><img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY2941.jpg" alt="Instalaciones 3" onerror="this.onerror=null;this.src='https://placehold.co/300x220/ccc/333?text=Galería+3';"></div>
+                        <div class="gallery-item"><img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY2983.jpg" alt="Instalaciones 4" onerror="this.onerror=null;this.src='https://placehold.co/300x220/ccc/333?text=Galería+4';"></div>
+                        <div class="gallery-item"><img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY3017_2.jpg" alt="Instalaciones 5" onerror="this.onerror=null;this.src='https://placehold.co/300x220/ccc/333?text=Galería+5';"></div>
+                        <div class="gallery-item"><img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/_SNY3025.jpg" alt="Instalaciones 6" onerror="this.onerror=null;this.src='https://placehold.co/300x220/ccc/333?text=Galería+6';"></div>
+                    </div>
+                    <button class="gallery-nav prev" aria-label="Anterior"><i data-feather="chevron-left"></i></button>
+                    <button class="gallery-nav next" aria-label="Siguiente"><i data-feather="chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- ======== FOOTER ======== -->
@@ -1016,645 +1034,453 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Línea Médica Yolombó</h4>
-                    <p>Cuidando la salud de nuestra gente con calidez y profesionalismo.</p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=61559292910332&mibextid=LQQJ4d" target="_blank"><i data-feather="facebook" class="icon"></i></a>
-                        <a href="https://www.instagram.com/lineamedicayolombo/" target="_blank"><i data-feather="instagram" class="icon"></i></a>
-                        <a href="https://wa.me/573235957483" target="_blank"><i data-feather="message-circle" class="icon"></i></a>
-                    </div>
+                    <p>Cuidando la salud del Nordeste Antioqueño con tecnología y calidad humana.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Navegación</h4>
                     <a href="#inicio">Inicio</a>
-                    <a href="#sobre-nosotros">Sobre Nosotros</a>
                     <a href="#servicios">Servicios</a>
                     <a href="#convenios">Convenios</a>
                     <a href="#galeria">Galería</a>
                 </div>
                 <div class="footer-col">
                     <h4>Contacto</h4>
-                    <p>Calle 20 #20-183, Yolombó, Antioquia</p>
-                    <p>Teléfono: +57 323 595 7483</p>
-                    <p>Email: lineamedicayolombo@gmail.com</p>
+                    <p><strong>Dirección:</strong> Cra. 20 #20-41, Yolombó, Antioquia</p>
+                    <p><strong>Teléfono:</strong> <a href="tel:+573235957483">(+57) 323 5957483</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:lineamedicayolombo@gmail.com">lineamedicayolombo@gmail.com</a></p>
                 </div>
-                 <div class="footer-col">
-                    <h4>Horario de Atención</h4>
-                    <p>Lunes a Viernes: 7am - 6pm</p>
-                    <p>Sábados: 8am - 1pm</p>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/lineamedicayolombo" target="_blank" aria-label="Instagram"><i data-feather="instagram" class="icon"></i></a>
+                        <a href="https://www.facebook.com/profile.php?id=100088279723491" target="_blank" aria-label="Facebook"><i data-feather="facebook" class="icon"></i></a>
+                        <a href="https://wa.me/573235957483" target="_blank" aria-label="WhatsApp"><i data-feather="message-circle" class="icon"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Línea Médica Yolombó. Todos los derechos reservados.</p>
+                <p>&copy; 2024 Línea Médica Yolombó. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- ======== BOTONES FLOTANTES ======== -->
-    <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20solicitar%20más%20información." class="floating-action-button" id="whatsapp-fab" target="_blank" aria-label="Contactar por WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-    </a>
-    <div class="floating-action-button" id="chatbot-fab" role="button" aria-label="Abrir chat con Asesor Virtual">
+    <!-- ======== BOTONES FLOTANTES Y CHATBOT ======== -->
+    <button id="chatbot-fab" class="floating-action-button" aria-label="Abrir chat de ayuda">
         <i data-feather="message-circle"></i>
-    </div>
+    </button>
+    <a href="https://wa.me/573235957483?text=Hola,%20necesito%20ayuda." target="_blank" id="whatsapp-fab" class="floating-action-button" aria-label="Contactar por WhatsApp">
+        <i data-feather="phone"></i>
+    </a>
 
-    <div class="chatbot-window" id="chatbot-window" role="dialog" aria-modal="true" aria-labelledby="chatbot-title" hidden>
+    <div id="chatbot-window" class="chatbot-window" role="dialog" aria-modal="true" aria-labelledby="chatbot-title">
         <div class="chatbot-header">
-            <h4 id="chatbot-title">Asesor Virtual</h4>
-            <button class="chatbot-close-btn" id="chatbot-close-btn" aria-label="Cerrar chat">
-                <i data-feather="x"></i>
-            </button>
+            <h4 id="chatbot-title">Asistente Virtual</h4>
+            <button id="chatbot-close-btn" class="chatbot-close-btn" aria-label="Cerrar chat"><i data-feather="x"></i></button>
         </div>
-        <div class="chatbot-body" id="chatbot-body">
-            <!-- Los mensajes del chat se agregarán aquí -->
+        <div id="chatbot-body" class="chatbot-body">
+            <!-- Los mensajes del chat se insertarán aquí -->
         </div>
-        <div class="chat-quick-replies" id="chat-quick-replies">
-             <!-- Las respuestas rápidas se agregarán aquí -->
+        <div id="chat-quick-replies" class="chat-quick-replies">
+            <!-- Las respuestas rápidas se insertarán aquí -->
         </div>
         <div class="chatbot-footer">
-            <input type="text" class="chatbot-input" id="chatbot-input" placeholder="Escribe un mensaje..." autocomplete="off">
-            <button class="chatbot-send-btn" id="chatbot-send-btn" aria-label="Enviar mensaje">
-                <i data-feather="send"></i>
-            </button>
+            <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Escribe un mensaje..." disabled>
+            <button id="chatbot-send-btn" class="chatbot-send-btn" aria-label="Enviar mensaje" disabled><i data-feather="send"></i></button>
         </div>
     </div>
-
-
-    <!-- Script para el menú móvil y los iconos -->
-    <script>
-        // Activa los iconos de Feather
-        feather.replace();
-
-        // Lógica para el menú móvil (hamburguesa)
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleBtn = document.querySelector('.mobile-nav-toggle');
-            const mobileNav = document.querySelector('.mobile-nav');
-            const iconMenu = toggleBtn.querySelector('.icon-menu');
-            const iconClose = toggleBtn.querySelector('.icon-close');
-
-            if (toggleBtn && mobileNav) {
-                toggleBtn.addEventListener('click', () => {
-                    const isOpen = mobileNav.classList.toggle('is-open');
-                    toggleBtn.setAttribute('aria-expanded', isOpen);
-                    mobileNav.setAttribute('aria-hidden', !isOpen);
-                    
-                    if(isOpen) {
-                        iconMenu.style.display = 'none';
-                        iconClose.style.display = 'block';
-                    } else {
-                        iconMenu.style.display = 'block';
-                        iconClose.style.display = 'none';
-                    }
-                });
-            }
-
-            // Lógica para el desplazamiento suave
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                         // Cierra el menú móvil si está abierto
-                        if (mobileNav.classList.contains('is-open')) {
-                            mobileNav.classList.remove('is-open');
-                            toggleBtn.setAttribute('aria-expanded', 'false');
-                            mobileNav.setAttribute('aria-hidden', 'true');
-                            iconMenu.style.display = 'block';
-                            iconClose.style.display = 'none';
-                        }
-
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
     
-    <!-- Script para el Chatbot y Títulos Dinámicos -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- LÓGICA DE TÍTULOS DINÁMICOS ---
-            const heroHeadline = document.getElementById('hero-headline');
-            const heroSubheadline = document.getElementById('hero-subheadline');
-
-            const specialDatePhrases = [
-                { date: '07-20', title: '¡Feliz Día de la <span class="highlight">Independencia!</span>', subtitle: 'Hoy celebramos con orgullo nuestra libertad. En Línea Médica, cuidamos el corazón de Colombia.' }
-            ];
-
-            const defaultPhrases = [
-                { title: 'Tu salud, <span class="highlight">nuestra prioridad</span> en Yolombó', subtitle: 'Ofrecemos un servicio de salud integral, humano y de calidad, con acceso a los mejores especialistas y tecnología de punta.' },
-                { title: 'Innovación y <span class="highlight">calidez humana</span> a tu servicio', subtitle: 'Combinamos la última tecnología con un trato cercano y personalizado para cuidar de ti y tu familia.' },
-                { title: 'Diagnósticos precisos, <span class="highlight">cuidado cercano</span>', subtitle: 'Somos especialistas en ayudas diagnósticas cardiorrespiratorias, comprometidos con tu bienestar.' },
-                { title: 'El mejor cuidado para tu <span class="highlight">corazón y pulmones</span>', subtitle: 'En Línea Médica Yolombó, encuentras la experiencia y tecnología que necesitas para respirar tranquilidad.' }
-            ];
-
-            const today = new Date();
-            const todayFormatted = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-            
-            let phrase = specialDatePhrases.find(p => p.date === todayFormatted);
-
-            if (!phrase) {
-                const randomIndex = Math.floor(Math.random() * defaultPhrases.length);
-                phrase = defaultPhrases[randomIndex];
-            }
-
-            heroHeadline.innerHTML = phrase.title;
-            heroSubheadline.innerHTML = phrase.subtitle;
-
-
-            // --- LÓGICA DEL CHATBOT ---
-            const fab = document.getElementById('chatbot-fab');
-            const window = document.getElementById('chatbot-window');
-            const closeBtn = document.getElementById('chatbot-close-btn');
-            const chatBody = document.getElementById('chatbot-body');
-            const input = document.getElementById('chatbot-input');
-            const sendBtn = document.getElementById('chatbot-send-btn');
-            const quickRepliesContainer = document.getElementById('chat-quick-replies');
-
-            const toggleChatbot = () => {
-                const isOpen = window.classList.toggle('is-open');
-                window.hidden = !isOpen;
-                if (isOpen) {
-                    input.focus();
-                }
-            };
-
-            fab.addEventListener('click', () => {
-                toggleChatbot();
-                if (chatBody.children.length === 0) {
-                    setTimeout(() => addBotMessage(getBotResponse('hola')), 500);
-                }
-            });
-            closeBtn.addEventListener('click', toggleChatbot);
-
-            const addMessage = (message, sender) => {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('chat-message', sender);
-                messageElement.innerHTML = message;
-                chatBody.appendChild(messageElement);
-                chatBody.scrollTop = chatBody.scrollHeight;
-            };
-            
-            const addBotMessage = (response) => {
-                addMessage(response.text, 'bot');
-                if (response.replies && response.replies.length > 0) {
-                    showQuickReplies(response.replies);
-                }
-            }
-
-            const showQuickReplies = (replies) => {
-                quickRepliesContainer.innerHTML = '';
-                replies.forEach(reply => {
-                    const button = document.createElement('button');
-                    button.classList.add('quick-reply-btn');
-                    button.textContent = reply;
-                    button.addEventListener('click', () => {
-                        handleUserInput(reply);
-                    });
-                    quickRepliesContainer.appendChild(button);
-                });
-            }
-
-            const handleUserInput = (inputText = null) => {
-                const text = inputText || input.value.trim();
-                if (text === '') return;
-
-                addMessage(text, 'user');
-                if (!inputText) input.value = '';
-                quickRepliesContainer.innerHTML = '';
-
-                setTimeout(() => {
-                    const botResponse = getBotResponse(text);
-                    addBotMessage(botResponse);
-                }, 1000);
-            };
-
-            sendBtn.addEventListener('click', () => handleUserInput());
-            input.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    handleUserInput();
-                }
-            });
-
-            const getBotResponse = (userInput) => {
-                const text = userInput.toLowerCase();
-                
-                if (text.includes('hola') || text.includes('inicio') || text.includes('ayuda')) {
-                    return {
-                        text: '👋 ¡Hola! Bienvenido a LÍNEA MÉDICA Yolombó. Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?',
-                        replies: ['Agendar una cita', 'Nuestros servicios', 'Ubicación y horarios']
-                    };
-                }
-
-                if (text.includes('cita')) {
-                     return {
-                        text: '¡Con gusto te ayudo a agendar tu cita! Para poder orientarte mejor, ¿qué servicio necesitas?',
-                        replies: ['Consulta General', 'Ecocardiograma', 'Holter', 'Espirometría', 'Monitoreo de Presión (MAPA)']
-                    };
-                }
-                
-                if (text.includes('consulta general') || text.includes('ecocardiograma') || text.includes('holter') || text.includes('espirometría') || text.includes('monitoreo')) {
-                    return {
-                        text: `Perfecto. Para agendar tu ${userInput}, por favor contáctanos directamente a nuestro WhatsApp o teléfono para confirmar la disponibilidad de fechas. ¿Puedo ayudarte con algo más?`,
-                        replies: ['Ver otros servicios', 'Horarios', 'Gracias']
-                    };
-                }
-
-                if (text.includes('servicio')) {
-                    return {
-                        text: 'Ofrecemos diagnóstico no invasivo en cardiología y neumología. ¿Sobre qué servicio necesitas más información?',
-                        replies: ['Consulta General', 'Ecocardiograma', 'Holter', 'Espirometría', 'Monitoreo de Presión (MAPA)']
-                    };
-                }
-
-                if (text.includes('ubicación') || text.includes('horario')) {
-                    return {
-                        text: 'Nos encontramos en Calle 20 #20-183, Yolombó, Antioquia. 📍<br>Nuestro horario de atención es de Lunes a Viernes de 7am a 6pm, y Sábados de 8am a 1pm.',
-                        replies: ['Agendar una cita', 'Nuestros servicios']
-                    };
-                }
-                
-                if (text.includes('gracias')) {
-                    return {
-                        text: '¡De nada! Ha sido un placer ayudarte. Si tienes otra pregunta, no dudes en consultarme. 😊',
-                        replies: ['Inicio']
-                    };
-                }
-
-                return {
-                    text: 'No estoy seguro de cómo responder a eso. ¿Puedes intentar con otra pregunta? Aquí tienes algunas opciones:',
-                    replies: ['Agendar una cita', 'Nuestros servicios', 'Ubicación y horarios']
-                };
-            };
-        });
-    </script>
-    
-    <!-- Script para la Galería -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const track = document.querySelector('.gallery-track');
-            const prevBtn = document.querySelector('.gallery-nav.prev');
-            const nextBtn = document.querySelector('.gallery-nav.next');
-
-            const images = [
-                '_SNY2820.jpg', '_SNY2821.jpg', '_SNY2825_1.jpg', '_SNY2832.jpg', 
-                '_SNY2836.jpg', '_SNY2837_1.jpg', '_SNY2839.jpg', '_SNY2840.jpg', 
-                '_SNY2841.jpg', '_SNY2842.jpg', '_SNY2850.jpg', '_SNY2853.jpg', 
-                '_SNY2854.jpg', '_SNY2856.jpg', '_SNY2858.jpg', '_SNY2859.jpg',
-                '_SNY2860.jpg', '_SNY2861.jpg', '_SNY2862.jpg', '_SNY2863.jpg',
-                '_SNY2864.jpg', '_SNY2865.jpg', '_SNY2866.jpg'
-            ];
-
-            const baseUrl = 'https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/';
-
-            images.forEach(imgName => {
-                const item = document.createElement('div');
-                item.className = 'gallery-item';
-                const img = document.createElement('img');
-                img.src = baseUrl + imgName;
-                img.alt = 'Imagen de la galería de Línea Médica';
-                img.onerror = () => { img.src = `https://placehold.co/300x220/eef2f7/333?text=Imagen+no+disponible`; };
-                item.appendChild(img);
-                track.appendChild(item);
-            });
-            
-            let currentIndex = 0;
-            const itemWidth = 320; // 300px width + 20px gap
-
-            const updateGalleryPosition = () => {
-                track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
-            };
-
-            nextBtn.addEventListener('click', () => {
-                if (currentIndex < images.length - 1) {
-                    currentIndex++;
-                    updateGalleryPosition();
-                }
-            });
-
-            prevBtn.addEventListener('click', () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    updateGalleryPosition();
-                }
-            });
-
-            // Drag to scroll functionality
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            track.addEventListener('mousedown', (e) => {
-                isDown = true;
-                track.classList.add('active');
-                startX = e.pageX - track.offsetLeft;
-                scrollLeft = track.scrollLeft;
-            });
-            track.addEventListener('mouseleave', () => {
-                isDown = false;
-                track.classList.remove('active');
-            });
-            track.addEventListener('mouseup', () => {
-                isDown = false;
-                track.classList.remove('active');
-            });
-            track.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - track.offsetLeft;
-                const walk = (x - startX) * 2; //scroll-fast
-                track.scrollLeft = scrollLeft - walk;
-            });
-        });
-    </script>
-
-    <!-- Script de React para los banners -->
+    <!-- ======== SCRIPT DE REACT PARA BANNERS ======== -->
     <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
-        
-        // --- DATOS DE LOS BANNERS ---
-        const slidesDataEscano = [
-            { id: 0, title: "¿Necesitas algún estudio médico?", content_type: "cover", text: "Con el convenio <strong>Línea Médica</strong> y <strong>ESCANO</strong> te ofrecemos <strong>beneficios exclusivos</strong>." },
-            { id: 1, title: "<strong>Nuestros</strong> <span class='highlight-blue'>Servicios</span>", content_type: "list", items: [ { name: "<strong>Resonancia</strong> magnética", isNew: false }, { name: "<strong>Ecografía</strong>", isNew: false }, { name: "<strong>Tomografía</strong>", isNew: false }, { name: "<strong>Densitometría</strong> ósea", isNew: false }, { name: "<strong>Mamografía</strong>", isNew: false }, { name: "<strong>Rayos X</strong>", isNew: false }, { name: "<strong>Chequeos</strong> preventivos", isNew: true }, { name: "<strong>Electrocardiograma</strong>", isNew: false }, { name: "<strong>Consulta</strong> médica", isNew: true }, ] },
-            { id: 2, title: "<strong>Beneficios</strong> <span class='highlight-blue'>Exclusivos</span>", content_type: "list", items: [ { name: "Citas en <strong>máximo 2 días</strong> hábiles", isNew: false }, { name: "Entrega de <strong>resultados rápidos</strong>", isNew: false }, { name: "<strong>Descuentos</strong> especiales", isNew: false }, { name: "Atención con <strong>calidez humana</strong>", isNew: false }, { name: "<strong>Seguimiento</strong> personalizado", isNew: false }, { name: "<strong>Envío de resultados</strong> a tu médico", isNew: false }, ] },
-            { id: 3, title: "<strong>Confianza</strong> y <span class='highlight-blue'>Experiencia</span>", content_type: "paragraph", text: "Con más de <strong>40 años de experiencia</strong>, ESCANO es especialista en ayudas diagnósticas. En <strong>Línea Médica</strong> y <strong>ESCANO</strong> estamos comprometidos con tu <strong>bienestar</strong>. ¡Tu salud es lo más importante!" },
-            { id: 4, content_type: "logos" }
-        ];
+      const { useState, useEffect, useRef } = React;
 
-        const slidesDataCredit = [
-            { id: 0, title: "Financia tu Bienestar", content_type: "cover", text: "Créditos <strong>rápidos</strong> y <strong>fáciles</strong> a través de <strong>MD Capital</strong>." },
-            { id: 1, title: "<strong>Beneficios</strong> de tu Crédito", content_type: "list", items: [ { name: "Proceso <strong>100% digital</strong>" }, { name: "<strong>Fácil y Rápido</strong>, sin papeleos" }, { name: "<strong>Aprobación</strong> en minutos" }, { name: "Paga a tu ritmo y <strong>sin codeudor</strong>" }, { name: "Múltiples <strong>opciones de pago</strong>" }, { name: "Totalmente <strong>confiable y seguro</strong>" }, ] },
-            { id: 2, title: "¿Cómo <strong>Funciona</strong>?", content_type: "list", items: [ { name: "<strong>1. Solicita</strong> tu crédito en línea." }, { name: "<strong>2. Recibe</strong> aprobación inmediata." }, { name: "<strong>3. Usa</strong> tu crédito para tus servicios." }, { name: "<strong>4. Paga</strong> tus cuotas fácilmente." }, ] },
-            { id: 3, title: "No pongas en <strong>pausa tu salud</strong>", content_type: "paragraph", text: "Accede a un crédito <strong>fácil y rápido</strong>, sin preocuparte por el costo. ¡Tu bienestar es nuestra prioridad!" },
-            { id: 4, title: "Solicita tu <strong>Crédito Ahora</strong>", content_type: "cta", text: "Estás a un solo clic de obtener la financiación que necesitas para cuidar de tu salud.", cta_link: "https://app.mdcapital.com.co/self-credit" },
-            { id: 5, content_type: "logos" }
-        ];
+      // --- Datos para los Banners ---
+      const bannerData = {
+        escano: {
+          slides: [
+            {
+              type: 'cover',
+              icon: `<svg viewBox="0 0 64 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M55.4545 2.04541C52.6393 -0.681836 48.2019 -0.681836 45.3867 2.04541L32 14.9999L18.6133 2.04541C15.7981 -0.681836 11.3607 -0.681836 8.54551 2.04541C5.73033 4.77265 5.73033 9.09087 8.54551 11.8181L26.3637 29.0909C29.6133 32.2272 34.3867 32.2272 37.6363 29.0909L55.4545 11.8181C58.2697 9.09087 58.2697 4.77265 55.4545 2.04541Z" fill="#E30052"/><path d="M32.0001 49.4318C30.0115 49.4318 28.3183 47.7386 28.3183 45.75V21.4772C28.3183 19.4886 30.0115 17.7954 32.0001 17.7954C33.9888 17.7954 35.6819 19.4886 35.6819 21.4772V45.75C35.6819 47.7386 33.9888 49.4318 32.0001 49.4318Z" fill="#014D98"/></svg>`,
+              title: "Convenio Escanografía",
+              text: "Ahora en Yolombó, accede a servicios de <strong>Escanografía y Tomografía Axial Computarizada (TAC)</strong> gracias a nuestra alianza estratégica.",
+            },
+            {
+              type: 'info',
+              title: "<strong>Estudios</strong> Disponibles",
+              list: [
+                "Tomografía de Cráneo",
+                "Tomografía de Tórax",
+                "Tomografía de Abdomen",
+                "Angiotomografía (AngioTAC)",
+                "¡Y muchos más!",
+              ],
+              ctaText: "Agenda tu TAC",
+              ctaLink: "https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20Tomografía%20(TAC)."
+            },
+            {
+              type: 'logos',
+              logos: [
+                "https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%202.png",
+                "https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/Logo-Escano.png"
+              ]
+            }
+          ]
+        },
+        credit: {
+          slides: [
+            {
+              type: 'cover',
+              icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.25 8.25H21.75" stroke="#014D98" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 12H9" stroke="#057DCB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.5 5.25H4.5C3.25736 5.25 2.25 6.25736 2.25 7.5V16.5C2.25 17.7426 3.25736 18.75 4.5 18.75H19.5C20.7426 18.75 21.75 17.7426 21.75 16.5V7.5C21.75 6.25736 20.7426 5.25 19.5 5.25Z" stroke="#014D98" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+              title: "Crédito para tu Salud",
+              text: "Financia tus procedimientos y exámenes. Tu bienestar no puede esperar. <strong>¡Te prestamos para lo que necesites!</strong>",
+            },
+            {
+              type: 'info',
+              title: "<strong>Beneficios</strong> de nuestro crédito",
+              list: [
+                  "Aprobación rápida",
+                  "Bajas tasas de interés",
+                  "Plazos flexibles de pago",
+                  "Sin codeudor (sujeto a estudio)",
+                  "Cubre todos nuestros servicios"
+              ],
+              ctaText: "Solicita tu Crédito",
+              ctaLink: "https://wa.me/573235957483?text=Hola,%20quisiera%20información%20sobre%20el%20crédito%20de%20salud."
+            }
+          ]
+        },
+        pedia: {
+          slides: [
+            {
+              type: 'cover',
+              icon: `<svg viewBox="0 0 64 50" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M55.4545 2.04541C52.6393 -0.681836 48.2019 -0.681836 45.3867 2.04541L32 14.9999L18.6133 2.04541C15.7981 -0.681836 11.3607 -0.681836 8.54551 2.04541C5.73033 4.77265 5.73033 9.09087 8.54551 11.8181L26.3637 29.0909C29.6133 32.2272 34.3867 32.2272 37.6363 29.0909L55.4545 11.8181C58.2697 9.09087 58.2697 4.77265 55.4545 2.04541Z" fill="#E30052"/><path d="M32.0001 49.4318C30.0115 49.4318 28.3183 47.7386 28.3183 45.75V21.4772C28.3183 19.4886 30.0115 17.7954 32.0001 17.7954C33.9888 17.7954 35.6819 19.4886 35.6819 21.4772V45.75C35.6819 47.7386 33.9888 49.4318 32.0001 49.4318Z" fill="#014D98"/></svg>`,
+              title: "Cardiología Pediátrica",
+              text: "Cuidamos el corazón de los más pequeños con especialistas dedicados y tecnología adaptada para niños.",
+            },
+            {
+              type: 'info',
+              title: "<strong>Servicios</strong> Pediátricos",
+              list: [
+                "Consulta con Cardiólogo Pediatra",
+                "Ecocardiograma Pediátrico",
+                "Electrocardiograma Pediátrico",
+                "Monitoreo Holter Pediátrico",
+              ],
+              ctaText: "Agenda una Cita",
+              ctaLink: "https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20de%20cardiología%20pediátrica."
+            }
+          ]
+        }
+      };
 
-        const slidesDataPedia = [
-            { id: 0, title: "Cardiología Pediátrica", content_type: "cover", text: "Porque cada pequeño corazón merece lo mejor. <strong>Tu tranquilidad es nuestra prioridad.</strong>" },
-            { id: 1, title: "Servicios Pediátricos", content_type: "list", items: [ { name: "Consulta Pediátrica" }, { name: "Ecocardiograma Pediátrico" }, { name: "Holter 24 Horas" }, { name: "Espirometría Pediátrica" }, { name: "MAPA 24 Horas" } ] },
-            { id: 2, title: "Cuidado Especializado", content_type: "paragraph", text: "Ofrecemos un diagnóstico preciso y un enfoque humano para el cuidado cardiovascular de los más pequeños. ¡Agenda una cita y dale a tus hijos la atención que merecen!" },
-             { id: 3, title: "Beneficios para los Pequeños", content_type: "list", items: [ { name: "Atención cálida y amigable" }, { name: "Equipos adaptados para niños" }, { name: "Resultados rápidos y confiables" }, { name: "Comunicación directa con tu pediatra" } ] },
-        ];
+      // --- Componente Reutilizable de Banner ---
+      function Banner({ slides }) {
+        const [currentIndex, setCurrentIndex] = useState(0);
+        const timeoutRef = useRef(null);
 
-        // --- HOOK PERSONALIZADO PARA LA LÓGICA DEL SLIDESHOW ---
-        const useSlideshow = (slideCount, interval) => {
-            const [currentSlide, setCurrentSlide] = useState(0);
-            const timeoutRef = useRef(null);
-
-            const resetTimeout = () => {
-                if (timeoutRef.current) clearTimeout(timeoutRef.current);
-            };
-
-            useEffect(() => {
-                resetTimeout();
-                timeoutRef.current = setTimeout(
-                    () => setCurrentSlide((prev) => (prev + 1) % slideCount),
-                    interval
-                );
-                return () => resetTimeout();
-            }, [currentSlide, slideCount, interval]);
-
-            const goToSlide = (index) => {
-                setCurrentSlide(index);
-            };
-
-            return [currentSlide, goToSlide];
-        };
-
-        // --- FUNCIÓN DE AYUDA PARA MANEJAR ERRORES DE IMAGEN ---
-        const handleImageError = (e, logoName) => {
-            const placeholderText = logoName.replace(' ', '+');
-            e.target.src = `https://placehold.co/250x80/e0e7ff/333?text=${placeholderText}`;
-            e.target.onerror = null;
-        };
-
-        // --- COMPONENTES DE LOS BANNERS ---
-        const EscanoBanner = () => {
-            const [currentSlide, goToSlide] = useSlideshow(slidesDataEscano.length, 8500);
-
-            return (
-                <div className="banner-container escano-banner">
-                    <div className="slides-viewport" aria-live="polite">
-                        <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                            {slidesDataEscano.map((slide, index) => {
-                                if (slide.content_type === 'cover') {
-                                    return (
-                                        <div className="slide-content slide-cover" key={slide.id} role="tabpanel">
-                                            <div className="cover-icon-wrapper">
-                                                <div className="cover-heart">
-                                                    <svg role="img" aria-labelledby="escano-heart-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#E30052" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                                        <title id="escano-heart-title">Corazón con línea de electrocardiograma</title>
-                                                        <path d="M32 58 C12 42 4 28 12 18 C18 10 28 12 32 20 C36 12 46 10 52 18 C60 28 52 42 32 58" />
-                                                        <path d="M12 32 L20 32 L24 38 L30 24 L34 40 L40 28 L52 28">
-                                                            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite" />
-                                                            <animate attributeName="stroke-dashoffset" values="100;0" dur="2.5s" repeatCount="indefinite" />
-                                                        </path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
-                                            <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
-                                        </div>
-                                    )
-                                }
-                                if (slide.content_type === 'logos') {
-                                    return (
-                                        <div className="slide-content slide-logos" key={slide.id} role="tabpanel">
-                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%203.png" alt="Logo Línea Médica" className="stacked-logo" onError={(e) => handleImageError(e, 'Línea Médica')} />
-                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20escano.png" alt="Logo Escano" className="stacked-logo" onError={(e) => handleImageError(e, 'Escano')} />
-                                        </div>
-                                    )
-                                }
-                                return (
-                                    <div className={`slide-content ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id} role="tabpanel">
-                                        <div className="content-body">
-                                            <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
-                                            {slide.content_type === 'list' ? (
-                                                <ul className="info-list">
-                                                    {slide.items.map(item => (
-                                                        <li key={item.name} dangerouslySetInnerHTML={{ __html: `
-                                                            <svg role="img" aria-label="Checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E30052">
-                                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                                            </svg>
-                                                            <span>
-                                                                ${item.name}
-                                                                ${item.isNew ? '<span class="new-service-tag">NUEVO</span>' : ''}
-                                                            </span>
-                                                        `}}>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            ) : (
-                                                <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
-                                            )}
-                                        </div>
-                                        <a href="https://escanografia.com/" target="_blank" rel="noopener noreferrer" className="cta-button">
-                                            <span>Agenda tu Cita</span>
-                                        </a>
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                    <div className="pagination-dots" role="tablist">
-                        {slidesDataEscano.map((_, index) => (
-                            <button key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={`Ir a la diapositiva ${index + 1}`} aria-selected={currentSlide === index} role="tab"></button>
-                        ))}
-                    </div>
-                </div>
-            );
-        };
-
-        const CreditBanner = () => {
-            const [currentSlide, goToSlide] = useSlideshow(slidesDataCredit.length, 8500);
-
-            return (
-                <div className="banner-container credit-banner">
-                    <div className="slides-viewport" aria-live="polite">
-                        <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                            {slidesDataCredit.map((slide, index) => {
-                                if (slide.content_type === 'cover') {
-                                    return (
-                                        <div className="slide-content slide-cover" key={slide.id} role="tabpanel">
-                                            <div className="cover-icon-wrapper">
-                                                <div className="cover-icon">
-                                                    <svg role="img" aria-labelledby="credit-card-title" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#014d98">
-                                                        <title id="credit-card-title">Ícono de tarjeta de crédito</title>
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75v10.5A2.25 2.25 0 004.5 19.5z" />
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
-                                            <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
-                                        </div>
-                                    )
-                                }
-                                if (slide.content_type === 'logos') {
-                                    return (
-                                        <div className="slide-content slide-logos" key={slide.id} role="tabpanel">
-                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/LOGO%203.png" alt="Logo Línea Médica" className="stacked-logo" onError={(e) => handleImageError(e, 'Línea Médica')} />
-                                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/logo%20MD.png" alt="Logo MD Capital" className="stacked-logo" onError={(e) => handleImageError(e, 'MD Capital')}/>
-                                        </div>
-                                    )
-                                }
-                                return (
-                                    <div className={`slide-content ${slide.content_type === 'cta' ? 'slide-cta' : ''} ${index === 2 ? 'slide-background-gray' : ''}`} key={slide.id} role="tabpanel">
-                                        <div className="content-body">
-                                            <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
-                                            {slide.content_type === 'list' ? (
-                                                <ul className="info-list">
-                                                    {slide.items.map(item => (
-                                                        <li key={item.name}>
-                                                            <svg role="img" aria-label="Checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#014d98">
-                                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                                            </svg>
-                                                            <span dangerouslySetInnerHTML={{ __html: item.name }}></span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            ) : (
-                                                <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
-                                            )}
-                                        </div>
-                                        {slide.content_type === 'cta' && (
-                                            <a href={slide.cta_link} target="_blank" rel="noopener noreferrer" className="cta-button">
-                                                <span>Solicita tu Crédito</span>
-                                            </a>
-                                        )}
-                                    </div>
-                                )
-                            })}
-                        </div>
-                    </div>
-                    <div className="pagination-dots" role="tablist">
-                        {slidesDataCredit.map((_, index) => (
-                            <button key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={`Ir a la diapositiva ${index + 1}`} aria-selected={currentSlide === index} role="tab"></button>
-                        ))}
-                    </div>
-                </div>
-            );
-        };
-
-        const PediaBanner = () => {
-            const [currentSlide, goToSlide] = useSlideshow(slidesDataPedia.length, 8500);
-
-            return (
-                <div className="banner-container pedia-banner">
-                    <div className="slides-viewport" aria-live="polite">
-                        <div className="slides-track" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                            {slidesDataPedia.map((slide, index) => (
-                                <div className={`slide-content ${slide.content_type === 'cover' ? 'slide-cover' : ''}`} key={slide.id} role="tabpanel">
-                                    <div className="content-body">
-                                        {slide.content_type === 'cover' && (
-                                            <div className="cover-icon-wrapper">
-                                                <div className="cover-heart">
-                                                    <svg role="img" aria-labelledby="pedia-heart-title" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#E30052" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                                                        <title id="pedia-heart-title">Corazón con línea de electrocardiograma</title>
-                                                        <path d="M32 58 C12 42 4 28 12 18 C18 10 28 12 32 20 C36 12 46 10 52 18 C60 28 52 42 32 58" />
-                                                        <path d="M12 32 L20 32 L24 38 L30 24 L34 40 L40 28 L52 28">
-                                                            <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite" />
-                                                            <animate attributeName="stroke-dashoffset" values="100;0" dur="2.5s" repeatCount="indefinite" />
-                                                        </path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                        )}
-                                        <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
-                                        {slide.content_type === 'list' ? (
-                                            <ul className="info-list">
-                                                {slide.items.map(item => (
-                                                    <li key={item.name}>
-                                                        <svg role="img" aria-label="Checkmark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#E30052">
-                                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                                                        </svg>
-                                                        <span dangerouslySetInnerHTML={{ __html: item.name }}></span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
-                                        )}
-                                    </div>
-                                    <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20de%20Cardiología%20Pediátrica." target="_blank" rel="noopener noreferrer" className="cta-button">
-                                        <span>Agendar Cita Pediátrica</span>
-                                    </a>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="pagination-dots" role="tablist">
-                        {slidesDataPedia.map((_, index) => (
-                            <button key={index} className={`dot ${currentSlide === index ? 'active' : ''}`} onClick={() => goToSlide(index)} aria-label={`Ir a la diapositiva ${index + 1}`} aria-selected={currentSlide === index} role="tab"></button>
-                        ))}
-                    </div>
-                </div>
-            );
-        };
-
-        const App = () => {
-            return (
-                <div className="main-layout">
-                    <div className="banner-wrapper">
-                        <EscanoBanner />
-                    </div>
-                    <div className="banner-wrapper">
-                        <CreditBanner />
-                    </div>
-                    <div className="banner-wrapper">
-                        <PediaBanner />
-                    </div>
-                </div>
-            )
+        const resetTimeout = () => {
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+          }
         }
 
-        const container = document.getElementById('convenios-root');
-        const root = ReactDOM.createRoot(container);
-        root.render(<App />);
+        useEffect(() => {
+          resetTimeout();
+          timeoutRef.current = setTimeout(
+            () =>
+              setCurrentIndex((prevIndex) =>
+                prevIndex === slides.length - 1 ? 0 : prevIndex + 1
+              ),
+            5000 // Cambia de slide cada 5 segundos
+          );
+          return () => {
+            resetTimeout();
+          };
+        }, [currentIndex, slides.length]);
+
+        const goToSlide = (slideIndex) => {
+          setCurrentIndex(slideIndex);
+        };
+
+        const renderSlide = (slide, index) => {
+          switch (slide.type) {
+            case 'cover':
+              return (
+                <div key={index} className="slide-content slide-cover">
+                  <div className="cover-icon-wrapper">
+                      <div className="cover-icon" dangerouslySetInnerHTML={{ __html: slide.icon }}></div>
+                  </div>
+                  <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
+                  <p dangerouslySetInnerHTML={{ __html: slide.text }}></p>
+                </div>
+              );
+            case 'info':
+              return (
+                <div key={index} className="slide-content slide-info">
+                  <div className="content-body">
+                    <h2 dangerouslySetInnerHTML={{ __html: slide.title }}></h2>
+                    <ul className="info-list">
+                      {slide.list.map((item, i) => (
+                        <li key={i}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                          <span dangerouslySetInnerHTML={{ __html: item }}></span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <a href={slide.ctaLink} target="_blank" className="cta-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                    {slide.ctaText}
+                  </a>
+                </div>
+              );
+            case 'logos':
+              return (
+                <div key={index} className="slide-content slide-logos">
+                    {slide.logos.map((logo, i) => (
+                        <img key={i} src={logo} alt={`Logo ${i+1}`} className="stacked-logo" />
+                    ))}
+                </div>
+              );
+            default:
+              return null;
+          }
+        };
+
+        return (
+          <React.Fragment>
+            <div className="slides-viewport">
+              <div
+                className="slides-track"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {slides.map(renderSlide)}
+              </div>
+            </div>
+            <div className="pagination-dots">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  className={`dot ${currentIndex === index ? 'active' : ''}`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Ir a la diapositiva ${index + 1}`}
+                />
+              ))}
+            </div>
+          </React.Fragment>
+        );
+      }
+
+      // --- Renderizar los Banners en el DOM ---
+      const escanoRoot = ReactDOM.createRoot(document.getElementById('escano-banner-container'));
+      escanoRoot.render(<Banner slides={bannerData.escano.slides} />);
+
+      const creditRoot = ReactDOM.createRoot(document.getElementById('credit-banner-container'));
+      creditRoot.render(<Banner slides={bannerData.credit.slides} />);
+
+      const pediaRoot = ReactDOM.createRoot(document.getElementById('pedia-banner-container'));
+      pediaRoot.render(<Banner slides={bannerData.pedia.slides} />);
+
     </script>
+
+    <!-- ======== SCRIPT DE JAVASCRIPT GENERAL ======== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Reemplazar los iconos de Feather
+        feather.replace();
+
+        // --- LÓGICA DEL MENÚ MÓVIL ---
+        const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const iconMenu = document.querySelector('.icon-menu');
+        const iconClose = document.querySelector('.icon-close');
+
+        mobileNavToggle.addEventListener('click', () => {
+            const isOpen = mobileNav.classList.toggle('is-open');
+            mobileNavToggle.setAttribute('aria-expanded', isOpen);
+            mobileNav.setAttribute('aria-hidden', !isOpen);
+            iconMenu.style.display = isOpen ? 'none' : 'block';
+            iconClose.style.display = isOpen ? 'block' : 'none';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('is-open');
+                mobileNavToggle.setAttribute('aria-expanded', 'false');
+                mobileNav.setAttribute('aria-hidden', 'true');
+                iconMenu.style.display = 'block';
+                iconClose.style.display = 'none';
+            });
+        });
+
+        // --- ANIMACIÓN DE TEXTO EN HERO ---
+        const heroHeadline = document.getElementById('hero-headline');
+        const highlights = [
+            'preciso y confiable',
+            'cerca de tu hogar',
+            'de alta tecnología'
+        ];
+        let highlightIndex = 0;
+        setInterval(() => {
+            highlightIndex = (highlightIndex + 1) % highlights.length;
+            const span = heroHeadline.querySelector('.highlight');
+            span.style.opacity = 0;
+            setTimeout(() => {
+                span.textContent = highlights[highlightIndex];
+                span.style.opacity = 1;
+            }, 500);
+        }, 4000);
+
+        // --- LÓGICA DE LA GALERÍA (CARRUSEL DRAGGABLE) ---
+        const galleryContainer = document.querySelector('.gallery-container');
+        const galleryTrack = document.querySelector('.gallery-track');
+        const prevBtn = document.querySelector('.gallery-nav.prev');
+        const nextBtn = document.querySelector('.gallery-nav.next');
+        
+        if (galleryTrack) {
+            let isDown = false;
+            let startX;
+            let currentTranslate = 0;
+            let startTranslate = 0;
+
+            const getTrackWidth = () => galleryTrack.scrollWidth;
+            const getContainerWidth = () => galleryContainer.offsetWidth;
+
+            const setPosition = (x) => {
+                const maxTranslate = 0;
+                const minTranslate = getContainerWidth() - getTrackWidth() - 20; // 20px de gap
+                currentTranslate = Math.max(minTranslate, Math.min(maxTranslate, x));
+                galleryTrack.style.transform = `translateX(${currentTranslate}px)`;
+            };
+
+            const startDrag = (e) => {
+                isDown = true;
+                galleryTrack.style.cursor = 'grabbing';
+                galleryTrack.style.transition = 'none';
+                startX = e.pageX || e.touches[0].pageX;
+                startTranslate = currentTranslate;
+            };
+
+            const endDrag = () => {
+                isDown = false;
+                galleryTrack.style.cursor = 'grab';
+                galleryTrack.style.transition = 'transform 0.5s ease';
+            };
+
+            const moveDrag = (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX || e.touches[0].pageX;
+                const walk = (x - startX) * 1.5; // Multiplicador para mayor sensibilidad
+                setPosition(startTranslate + walk);
+            };
+
+            galleryTrack.addEventListener('mousedown', startDrag);
+            galleryTrack.addEventListener('mouseleave', endDrag);
+            galleryTrack.addEventListener('mouseup', endDrag);
+            galleryTrack.addEventListener('mousemove', moveDrag);
+            
+            galleryTrack.addEventListener('touchstart', startDrag, { passive: true });
+            galleryTrack.addEventListener('touchend', endDrag);
+            galleryTrack.addEventListener('touchmove', moveDrag);
+
+            const moveBy = (amount) => {
+                setPosition(currentTranslate + amount);
+            };
+
+            prevBtn.addEventListener('click', () => moveBy(320));
+            nextBtn.addEventListener('click', () => moveBy(-320));
+        }
+
+        // --- LÓGICA DEL CHATBOT ---
+        const chatbotFab = document.getElementById('chatbot-fab');
+        const chatbotWindow = document.getElementById('chatbot-window');
+        const chatbotCloseBtn = document.getElementById('chatbot-close-btn');
+        const chatbotBody = document.getElementById('chatbot-body');
+        const quickRepliesContainer = document.getElementById('chat-quick-replies');
+        
+        const toggleChatbot = (open) => {
+            chatbotWindow.classList.toggle('is-open', open);
+        };
+
+        chatbotFab.addEventListener('click', () => toggleChatbot(true));
+        chatbotCloseBtn.addEventListener('click', () => toggleChatbot(false));
+
+        const chatFlow = {
+            start: {
+                message: "¡Hola! Soy tu asistente virtual de Línea Médica. ¿Cómo puedo ayudarte hoy?",
+                replies: [
+                    { text: "Agendar una cita", next: "agendar" },
+                    { text: "Nuestros servicios", next: "servicios" },
+                    { text: "Ubicación y horarios", next: "ubicacion" }
+                ]
+            },
+            agendar: {
+                message: "¡Excelente! Para agendar una cita, la forma más rápida es por WhatsApp. ¿Te gustaría que te redirija ahora?",
+                replies: [
+                    { text: "Sí, ir a WhatsApp", action: () => window.open('https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita.') },
+                    { text: "Volver al inicio", next: "start" }
+                ]
+            },
+            servicios: {
+                message: "Ofrecemos diagnósticos cardiorrespiratorios como Electrocardiogramas, Holter, MAPA y Espirometrías. También tenemos convenios para Tomografías y Cardiología Pediátrica. ¿Deseas más detalles sobre alguno?",
+                replies: [
+                    { text: "Ver todos en la página", action: () => { document.getElementById('servicios').scrollIntoView(); toggleChatbot(false); } },
+                    { text: "Volver al inicio", next: "start" }
+                ]
+            },
+            ubicacion: {
+                message: "Nos encuentras en la Cra. 20 #20-41 en Yolombó, Antioquia. Nuestro horario de atención es de Lunes a Viernes de 8:00 AM a 5:00 PM.",
+                replies: [
+                    { text: "Ver en el mapa", action: () => window.open('https://maps.app.goo.gl/34GqG2yGq8Gv5JvU8') },
+                    { text: "Volver al inicio", next: "start" }
+                ]
+            }
+        };
+
+        const addMessage = (text, sender) => {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}`;
+            messageDiv.textContent = text;
+            chatbotBody.appendChild(messageDiv);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        };
+
+        const showReplies = (replies) => {
+            quickRepliesContainer.innerHTML = '';
+            replies.forEach(reply => {
+                const button = document.createElement('button');
+                button.className = 'quick-reply-btn';
+                button.textContent = reply.text;
+                button.addEventListener('click', () => {
+                    addMessage(reply.text, 'user');
+                    if (reply.next) {
+                        handleState(reply.next);
+                    }
+                    if (reply.action) {
+                        reply.action();
+                    }
+                });
+                quickRepliesContainer.appendChild(button);
+            });
+        };
+
+        const handleState = (stateKey) => {
+            const state = chatFlow[stateKey];
+            if (state) {
+                setTimeout(() => {
+                    addMessage(state.message, 'bot');
+                    if (state.replies) {
+                        showReplies(state.replies);
+                    }
+                }, 500);
+            }
+        };
+
+        // Iniciar chat
+        handleState('start');
+    });
+    </script>
+
 </body>
 </html>
