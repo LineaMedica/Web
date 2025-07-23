@@ -108,7 +108,7 @@
         .main-nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 20px;
         }
 
         .main-nav a {
@@ -537,6 +537,109 @@
         .gallery-nav.prev { left: -20px; }
         .gallery-nav.next { right: -20px; }
 
+        /* --- SECCIÓN FAQ (NUEVO DISEÑO CON TABS) --- */
+        .faq-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        .faq-tabs-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .tab-link {
+            padding: 12px 25px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background-color: var(--light-gray);
+            color: var(--primary-blue);
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+        .tab-link:hover {
+            background-color: #e6eaf0;
+            border-color: var(--secondary-blue);
+        }
+        .tab-link.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 15px rgba(1, 77, 152, 0.2);
+        }
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .faq-accordion {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #e0e7ff;
+        }
+        .accordion-item {
+            border-bottom: 1px solid #eee;
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        .accordion-header {
+            background-color: #f8f9fa;
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #e9eef5;
+        }
+        .accordion-header .icon {
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+        .accordion-header.active .icon {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            padding: 0 25px;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        }
+        .accordion-content p {
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            padding: 20px 0;
+        }
+        .accordion-header.active + .accordion-content {
+            max-height: 300px; /* Ajustar según el contenido */
+            padding: 0 25px;
+        }
+
         /* --- FOOTER --- */
         .main-footer {
             background-color: var(--primary-blue);
@@ -854,6 +957,7 @@
              .cta-button { font-size: 0.9rem; padding: 12px 25px; }
              .hero-section h1 { font-size: 2rem; }
              .hero-section p { font-size: 1rem; }
+             .tab-link { font-size: 0.9rem; padding: 10px 15px; }
         }
 
     </style>
@@ -873,6 +977,7 @@
                     <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#convenios">Convenios</a></li>
                     <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#faq">Preguntas Frecuentes</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
@@ -894,6 +999,7 @@
             <li><a href="#servicios">Servicios</a></li>
             <li><a href="#convenios">Convenios</a></li>
             <li><a href="#galeria">Galería</a></li>
+            <li><a href="#faq">Preguntas Frecuentes</a></li>
             <li><a href="#contacto">Contacto</a></li>
             <li><a href="https://wa.me/573235957483" target="_blank" class="cta-header-btn">Agendar Cita</a></li>
         </ul>
@@ -940,6 +1046,16 @@
                             <h3>Consulta con Médico General</h3>
                             <p>Atención médica primaria para el diagnóstico, tratamiento y prevención de enfermedades comunes, enfocada en el bienestar integral del paciente.</p>
                             <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20Consulta%20con%20Médico%20General." target="_blank" class="service-cta-btn">Agendar Cita</a>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-card-img-container">
+                            <img src="https://raw.githubusercontent.com/LineaMedica/Web/main/IMG/ELECTROCARDIOGRAMA.png" alt="Electrocardiograma" onerror="this.onerror=null;this.src='https://placehold.co/400x300/eef2f7/333?text=Electrocardiograma';">
+                        </div>
+                        <div class="service-card-content">
+                            <h3>Electrocardiograma</h3>
+                            <p>Registro de la actividad eléctrica del corazón para detectar arritmias y evaluar la salud cardiovascular de manera rápida y no invasiva.</p>
+                            <a href="https://wa.me/573235957483?text=Hola,%20quisiera%20agendar%20una%20cita%20para%20un%20Electrocardiograma." target="_blank" class="service-cta-btn">Agendar Cita</a>
                         </div>
                     </div>
                     <div class="service-card">
@@ -1007,6 +1123,103 @@
                 </div>
             </div>
         </section>
+
+        <!-- ======== FAQ SECTION (NUEVO DISEÑO CON TABS) ======== -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <h2>Preguntas <span class="highlight">Frecuentes</span></h2>
+                <div class="faq-tabs-container">
+                    <div class="faq-tabs">
+                        <button class="tab-link active" data-tab="ecg">Electrocardiograma</button>
+                        <button class="tab-link" data-tab="espirometria">Espirometría</button>
+                        <button class="tab-link" data-tab="holter">Holter</button>
+                        <button class="tab-link" data-tab="mapa">MAPA</button>
+                    </div>
+
+                    <div class="faq-content">
+                        <!-- Pestaña Electrocardiograma -->
+                        <div class="tab-pane active" id="tab-ecg">
+                            <div class="faq-accordion">
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Qué es el electrocardiograma (ECG)?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>El electrocardiograma (ECG) es una prueba médica que registra la actividad eléctrica del corazón a través de electrodos colocados en la piel. Proporciona información sobre el ritmo cardiaco y la función cardiaca.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Cuándo pueden pedirme un Electrocardiograma?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>Los médicos pueden pedir un electrocardiograma en una variedad de situaciones, incluyendo chequeos regulares, evaluación de síntomas cardíacos como dolor en el pecho, palpitaciones, mareos o dificultad para respirar, antes de ciertos procedimientos médicos o cirugías, y para monitorear el efecto de medicamentos cardíacos.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Cómo debo prepararme para un Electrocardiograma?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>En la mayoría de los casos, no se requiere ninguna preparación especial. Es importante informar al personal médico sobre cualquier medicamento que estés tomando y condiciones médicas relevantes. Usa ropa cómoda que permita acceso al pecho, brazos y piernas. Asegúrate de que la piel esté limpia y seca. Evita movimientos bruscos, hablar o toser durante el procedimiento. Retira objetos metálicos como joyas o piercings.</p></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pestaña Espirometría -->
+                        <div class="tab-pane" id="tab-espirometria">
+                            <div class="faq-accordion">
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Qué es una prueba broncodilatadora en la Espirometría?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>Consiste en realizar una espirometría antes y después de aplicar una medicación inhalada. Tras la aplicación de esta medicación, deberá esperar entre 15-30 minutos para realizar de nuevo la prueba. Su respuesta a este medicamento, conocido como broncodilatador, puede ayudar a realizar el diagnóstico de su enfermedad y comprobar si la obstrucción en los pulmones es reversible.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Cuándo pueden pedirme una Espirometría?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>La espirometría es ordenada por el médico para: 1. Identificar si el paciente presenta una alteración ventilatoria (ASMA O EPOC). 2. Clasificar la gravedad de la alteración ventilatoria. 3. Evaluar los cambios con el broncodilatador para definir si la obstrucción mejora. 4. Seguir la evolución de la enfermedad y la respuesta al tratamiento.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿En qué casos no podría realizarse una Espirometría?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>No podría realizarse si presentas: Preeclampsia, Hipertensión descontrolada, Inestabilidad hemodinámica, Aneurisma aórtico conocido, Hipertensión intracraneal, Desprendimiento agudo de retina. Si presentas cirugía reciente, infecciones, embarazo complicado, derrame pleural, neumotórax o infarto agudo al miocardio, debes informar al personal de salud y esperar el tiempo indicado.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Cómo debo prepararme para una Espirometría?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>No fumar 4 horas antes y no llevar ropa ajustada. Evitar comidas abundantes, bebidas con cafeína, energizantes y bebidas oscuras 12 horas. Si usas formoterol o salmeterol, suspender 24 horas antes. Tomar medicación de base. Evitar actividad física laboral o deportiva. Si tienes síntomas respiratorios, esperar mínimo 20 días. Presentar historia clínica o anexo con la indicación del examen. Traer Inhalocámara si la usas. Acudir con ropa cómoda y llegar con tiempo para un reposo de 15 minutos.</p></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pestaña Holter -->
+                        <div class="tab-pane" id="tab-holter">
+                            <div class="faq-accordion">
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Qué es el Holter EKG?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>El Holter Cardíaco o monitoreo electrocardiográfico, es un estudio que consiste en la monitorización ambulatoria de la actividad eléctrica del corazón por un periodo de 24 a 48 horas, durante la actividad diaria habitual del paciente. Se instala con cita previa y al siguiente día se retira.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Cuándo pueden pedirme una prueba de Holter EKG?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>El Holter Cardíaco se emplea para detectar alteraciones del ritmo cardíaco y del funcionamiento del automatismo del corazón. Pueden solicitar esta prueba si usted ha notado palpitaciones, ha tenido desmayos o lipotimias, en caso de arritmias, si ha tenido infartos, para valorar la cantidad de extrasístoles, evaluar el tratamiento que toma, identificar si tiene alteraciones del ritmo cardíaco y cualquier otra situación que considere su médico.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Cómo debo prepararme para un Holter EKG?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>Si eres mayor de 65 años, es necesario acudir acompañado. Tomar su medicación diaria, a no ser que su médico le haya indicado lo contrario. No es necesario estar en ayunas. Debe acudir con la piel limpia y seca, después de bañarse (recuerde que con la grabadora puesta no podrá bañarse).</p></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pestaña MAPA -->
+                        <div class="tab-pane" id="tab-mapa">
+                            <div class="faq-accordion">
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Qué es el Monitoreo Ambulatorio de Presión Arterial (MAPA)?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>El Monitoreo Ambulatorio de Presión Arterial (MAPA), es un estudio que consiste en la monitorización ambulatoria de la presión arterial por un periodo de 24 horas, durante la actividad diaria habitual del paciente. Se instala con cita previa y al siguiente día se retira.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Cuándo pueden pedirme una prueba MAPA?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>El MAPA se emplea para detectar alteraciones de la presión arterial, cuando hay sospecha del aumento de la presión arterial (hipertensión arterial) o crisis hipertensivas, para así observar sus variaciones y alteraciones en relación con las diferentes fases y actividades diarias del paciente, además cuando el paciente presenta fenómeno de bata blanca.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿En qué casos no podría realizarse un MAPA?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>No podría realizarse si padece arritmias frecuentes como la fibrilación auricular, pacientes con limitaciones físicas o cognitivas severas, Enfermedad de Parkinson o cualquier otra condición que condicione temblor permanente del paciente, brazo con fístula arterio-venosa, trastornos mentales o intolerancia al método. La realización en pacientes hospitalizados NO se considera de utilidad.</p></div>
+                                </div>
+                                <div class="accordion-item">
+                                    <div class="accordion-header"><span>¿Cómo debo prepararme para un MAPA?</span><i data-feather="chevron-down" class="icon"></i></div>
+                                    <div class="accordion-content"><p>Si eres mayor de 65 años, es necesario acudir acompañado. Tomar su medicación diaria, a no ser que su médico le haya indicado lo contrario. No es necesario estar en ayunas. Debe acudir con la piel limpia y seca, después de bañarse (recuerde que con la grabadora puesta no podrá bañarse). Usar camisa amplia.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
     </main>
 
@@ -1030,6 +1243,7 @@
                     <a href="#servicios">Servicios</a>
                     <a href="#convenios">Convenios</a>
                     <a href="#galeria">Galería</a>
+                    <a href="#faq">Preguntas Frecuentes</a>
                 </div>
                 <div class="footer-col">
                     <h4>Contacto</h4>
@@ -1084,8 +1298,8 @@
         // Activa los iconos de Feather
         feather.replace();
 
-        // Lógica para el menú móvil (hamburguesa)
         document.addEventListener('DOMContentLoaded', () => {
+            // Lógica para el menú móvil (hamburguesa)
             const toggleBtn = document.querySelector('.mobile-nav-toggle');
             const mobileNav = document.querySelector('.mobile-nav');
             const iconMenu = toggleBtn.querySelector('.icon-menu');
@@ -1125,10 +1339,48 @@
                             iconClose.style.display = 'none';
                         }
 
-                        targetElement.scrollIntoView({
+                        // Calcula la posición del header para un desplazamiento correcto
+                        const headerOffset = document.querySelector('.main-header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
                             behavior: 'smooth'
                         });
                     }
+                });
+            });
+
+            // Lógica para el acordeón de FAQ
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    header.classList.toggle('active');
+                    if (header.classList.contains('active')) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.padding = '0 25px';
+                    } else {
+                        content.style.maxHeight = '0';
+                        content.style.padding = '0 25px';
+                    }
+                });
+            });
+
+            // Lógica para las pestañas (tabs) de FAQ
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const tabId = link.getAttribute('data-tab');
+
+                    tabLinks.forEach(item => item.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+
+                    link.classList.add('active');
+                    document.getElementById('tab-' + tabId).classList.add('active');
                 });
             });
         });
@@ -1168,7 +1420,7 @@
 
             // --- LÓGICA DEL CHATBOT ---
             const fab = document.getElementById('chatbot-fab');
-            const window = document.getElementById('chatbot-window');
+            const windowEl = document.getElementById('chatbot-window');
             const closeBtn = document.getElementById('chatbot-close-btn');
             const chatBody = document.getElementById('chatbot-body');
             const input = document.getElementById('chatbot-input');
@@ -1176,8 +1428,8 @@
             const quickRepliesContainer = document.getElementById('chat-quick-replies');
 
             const toggleChatbot = () => {
-                const isOpen = window.classList.toggle('is-open');
-                window.hidden = !isOpen;
+                const isOpen = windowEl.classList.toggle('is-open');
+                windowEl.hidden = !isOpen;
                 if (isOpen) {
                     input.focus();
                 }
@@ -1658,3 +1910,4 @@
     </script>
 </body>
 </html>
+" in the Canv
